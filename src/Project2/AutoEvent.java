@@ -23,27 +23,27 @@ public class AutoEvent extends JPanel implements ActionListener, Runnable {
 	
 	public <CloseWindowIn5> AutoEvent(Land land, Player p) {//p.getLocation%10: 1-3 & 7-9 
 		setLayout(null);
-		if(land.getOwner() == null) { //ÎŞÖ÷ÍÁµØ
+		if(land.getOwner() == null) { //æ— ä¸»åœŸåœ°
 
-			int option = JOptionPane.showConfirmDialog(null, "Õâ¿éµØ¼ÛÖµ"+land.getBuyprice()+"\nÙ¯ÒªÂòµØ·¥£¿");
+			int option = JOptionPane.showConfirmDialog(null, "è¿™å—åœ°ä»·å€¼"+land.getBuyprice()+"\nä¾¬è¦ä¹°åœ°ä¼ï¼Ÿ");
 			if(option == 0) {
 				if(p.buyLand(land)) {
-					JOptionPane.showMessageDialog(null, "Äã»¨·Ñ"+land.getBuyprice()+"¹ºÂòÁËÕâ¿éµØ£¡");
+					JOptionPane.showMessageDialog(null, "ä½ èŠ±è´¹"+land.getBuyprice()+"è´­ä¹°äº†è¿™å—åœ°ï¼");
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "¶Ô²»Æğ£¬ÏÖ½ğ²»×ã£¡");
+					JOptionPane.showMessageDialog(null, "å¯¹ä¸èµ·ï¼Œç°é‡‘ä¸è¶³ï¼");
 				}
 			}
 		}
-		else if(land.getOwner().getName()==p.getName()) { //×Ô¼ºµÄÍÁµØ
+		else if(land.getOwner().getName()==p.getName()) { //è‡ªå·±çš„åœŸåœ°
 			
-			JOptionPane.showMessageDialog(null, "ÄãÔÚ×Ô¼ºµÄÒ»¿éÍÁµØÉÏÑ²ÊÓÁËÒ»È¦£¡");
+			JOptionPane.showMessageDialog(null, "ä½ åœ¨è‡ªå·±çš„ä¸€å—åœŸåœ°ä¸Šå·¡è§†äº†ä¸€åœˆï¼");
 		}
 		else{
-			JOptionPane.showMessageDialog(null, "·ç¹ıÁôºÛ£¬Ñã¹ı°ÎÃ«£¬Äã¹ıÒª½»·Ñ£º\n"+land.getOwner().getName()+" ÊÕÈ¡ÁË" 
-			+ land.getPaidmoney() + "¹ıÂ··Ñ~");
+			JOptionPane.showMessageDialog(null, "é£è¿‡ç•™ç—•ï¼Œé›è¿‡æ‹”æ¯›ï¼Œä½ è¿‡è¦äº¤è´¹ï¼š\n"+land.getOwner().getName()+" æ”¶å–äº†" 
+			+ land.getPaidmoney() + "è¿‡è·¯è´¹~");
 			if(!land.collect(p)) {
-				//ÆÆ²ú
+				//ç ´äº§
 			}
 		}
 	}
@@ -52,7 +52,7 @@ public class AutoEvent extends JPanel implements ActionListener, Runnable {
 	public void run() {
 		try {
 			Thread.sleep(2000);
-			setVisible(false); // ¹Ø±Õ´°¿Ú
+			setVisible(false); // å…³é—­çª—å£
 			// System.exit(0);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -60,23 +60,7 @@ public class AutoEvent extends JPanel implements ActionListener, Runnable {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// ÂòµØ
-		// if (e.getSource() == btLandOK) {
-		// if (p.getCash() < 1000) {
-		// JOptionPane.showMessageDialog(null, "¶î£¬ÍÁºÀ£¬ÏÈÈ¥È¡µãÇ®°É£¬ÄãµÄÇ®²»¶àÁË¡£¡£");
-		// this.setVisible(false);
-		// } else {
-		// land[location].setOwner(p.getName());
-		// p.setCash(-1000);
-		// this.setVisible(false);
-		// JOptionPane.showMessageDialog(null, "¹§Ï²£¡¹ºÂò³É¹¦£¡");
-		// }
-		// }
-		// // ²»ÂòµØ
-		// if (e.getSource() == btLandNO) {
-		// this.setVisible(false);
-		// }
-
+		
 	}
 
 }

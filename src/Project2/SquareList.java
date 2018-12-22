@@ -13,7 +13,7 @@ public class SquareList {
 		a.setId(1);
 		a.setBuyprice(200);
 		a.setBuildprice(100);
-		a.setItemName("Àû±ÈÑÇ");
+		a.setItemName("åˆ©æ¯”äºš");
 		int tmp[] = new int[5];
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (a.getBuyprice() * 0.5) * (i+1);
@@ -21,7 +21,7 @@ public class SquareList {
 		Land c = new Land();
 		c.setId(2);
 		c.setBuyprice(220);
-		c.setItemName("ËÕµ¤");
+		c.setItemName("è‹ä¸¹");
 		c.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (c.getBuyprice() * 0.5) * (i+1);
@@ -29,7 +29,7 @@ public class SquareList {
 		Land d = new Land();
 		d.setId(3);
 		d.setBuyprice(250);
-		d.setItemName("ÍÁ¶úÆä");
+		d.setItemName("åœŸè€³å…¶");
 		d.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (d.getBuyprice() * 0.5) * (i+1);
@@ -62,7 +62,7 @@ public class SquareList {
 		Land h = new Land();
 		h.setId(7);
 		h.setBuyprice(200);
-		h.setItemName("Ï£À°");
+		h.setItemName("å¸Œè…Š");
 		h.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (h.getBuyprice() * 0.5) * (i+1);
@@ -70,7 +70,7 @@ public class SquareList {
 		Land i1 = new Land();
 		i1.setId(8);
 		i1.setBuyprice(220);
-		i1.setItemName("±£¼ÓÀûÑÇ");
+		i1.setItemName("ä¿åŠ åˆ©äºš");
 		i1.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (i1.getBuyprice() * 0.5) * (i+1);
@@ -78,7 +78,7 @@ public class SquareList {
 		Land j = new Land();
 		j.setId(9);
 		j.setBuyprice(250);
-		j.setItemName("²¨À¼");
+		j.setItemName("æ³¢å…°");
 		j.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (j.getBuyprice() * 0.5) * (i+1);
@@ -105,7 +105,7 @@ public class SquareList {
 		Land l = new Land();
 		l.setId(11);
 		l.setBuyprice(200);
-		l.setItemName("¶íÂÞË¹");
+		l.setItemName("ä¿„ç½—æ–¯");
 		l.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (l.getBuyprice() * 0.5) * (i+1);
@@ -113,7 +113,7 @@ public class SquareList {
 		Land m = new Land();
 		m.setId(12);
 		m.setBuyprice(220);
-		m.setItemName("ÎÚ¿ËÀ¼");
+		m.setItemName("ä¹Œå…‹å…°");
 		m.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (m.getBuyprice() * 0.5) * (i+1);
@@ -121,7 +121,7 @@ public class SquareList {
 		Land n = new Land();
 		n.setId(13);
 		n.setBuyprice(250);
-		n.setItemName("Á¢ÌÕÍð");
+		n.setItemName("ç«‹é™¶å®›");
 		n.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (n.getBuyprice() * 0.5) * (i+1);
@@ -154,7 +154,7 @@ public class SquareList {
 		Land r = new Land();
 		r.setId(17);
 		r.setBuyprice(200);
-		r.setItemName("À­ÍÑÎ¬ÑÇ");
+		r.setItemName("æ‹‰è„±ç»´äºš");
 		r.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (r.getBuyprice() * 0.5) * (i+1);
@@ -170,7 +170,7 @@ public class SquareList {
 		Land t = new Land();
 		t.setId(19);
 		t.setBuyprice(250);
-		t.setItemName("°®É³ÄáÑÇ");
+		t.setItemName("çˆ±æ²™å°¼äºš");
 		t.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (t.getBuyprice() * 0.5) * (i+1);
@@ -198,7 +198,7 @@ public class SquareList {
 		Land v = new Land();
 		v.setId(21);
 		v.setBuyprice(200);
-		v.setItemName("Å²Íþ");
+		v.setItemName("æŒªå¨");
 		v.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (v.getBuyprice() * 0.5) * (i+1);
@@ -206,7 +206,7 @@ public class SquareList {
 		Land w = new Land();
 		w.setId(22);
 		w.setBuyprice(220);
-		w.setItemName("Èðµä");
+		w.setItemName("ç‘žå…¸");
 		w.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (w.getBuyprice() * 0.5) * (i+1);
@@ -214,7 +214,7 @@ public class SquareList {
 		Land x = new Land();
 		x.setId(23);
 		x.setBuyprice(250);
-		x.setItemName("·ÒÀ¼");
+		x.setItemName("èŠ¬å…°");
 		x.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (x.getBuyprice() * 0.5) * (i+1);
@@ -248,7 +248,7 @@ public class SquareList {
 		Land aa = new Land();
 		aa.setId(27);
 		aa.setBuyprice(200);
-		aa.setItemName("µÂ¹ú");
+		aa.setItemName("å¾·å›½");
 		aa.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (aa.getBuyprice() * 0.5) * (i+1);
@@ -256,7 +256,7 @@ public class SquareList {
 		Land bb = new Land();
 		bb.setId(28);
 		bb.setBuyprice(220);
-		bb.setItemName("·¨¹ú");
+		bb.setItemName("æ³•å›½");
 		bb.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (bb.getBuyprice() * 0.5) * (i+1);
@@ -264,7 +264,7 @@ public class SquareList {
 		Land cc = new Land();
 		cc.setId(29);
 		cc.setBuyprice(250);
-		cc.setItemName("Ó¢¹ú");
+		cc.setItemName("è‹±å›½");
 		cc.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (cc.getBuyprice() * 0.5) * (i+1);
@@ -292,7 +292,7 @@ public class SquareList {
 		Land ee = new Land();
 		ee.setId(31);
 		ee.setBuyprice(200);
-		ee.setItemName("¼ÓÄÃ´ó");
+		ee.setItemName("åŠ æ‹¿å¤§");
 		ee.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (ee.getBuyprice() * 0.5) * (i+1);
@@ -300,7 +300,7 @@ public class SquareList {
 		Land ff = new Land();
 		ff.setId(32);
 		ff.setBuyprice(220);
-		ff.setItemName("ÃÀ¹ú");
+		ff.setItemName("ç¾Žå›½");
 		ff.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (ff.getBuyprice() * 0.5) * (i+1);
@@ -308,7 +308,7 @@ public class SquareList {
 		Land gg = new Land();
 		gg.setId(33);
 		gg.setBuyprice(250);
-		gg.setItemName("Ä«Î÷¸ç");
+		gg.setItemName("å¢¨è¥¿å“¥");
 		gg.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (gg.getBuyprice() * 0.5) * (i+1);
@@ -342,7 +342,7 @@ public class SquareList {
 		Land kk = new Land();
 		kk.setId(27);
 		kk.setBuyprice(200);
-		kk.setItemName("µÏ°Ý");
+		kk.setItemName("è¿ªæ‹œ");
 		kk.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (kk.getBuyprice() * 0.5) * (i+1);
@@ -350,7 +350,7 @@ public class SquareList {
 		Land ll = new Land();
 		ll.setId(28);
 		ll.setBuyprice(220);
-		ll.setItemName("ÏÄÍþÒÄ");
+		ll.setItemName("å¤å¨å¤·");
 		ll.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (ll.getBuyprice() * 0.5) * (i+1);
@@ -358,7 +358,7 @@ public class SquareList {
 		Land mm = new Land();
 		mm.setId(29);
 		mm.setBuyprice(250);
-		mm.setItemName("°Ä´óÀûÑÇ");
+		mm.setItemName("æ¾³å¤§åˆ©äºš");
 		mm.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (mm.getBuyprice() * 0.5) * (i+1);

@@ -19,7 +19,7 @@ public class OpEvent extends JPanel implements ActionListener, Runnable {
 	
 	public <CloseWindowIn5> OpEvent(Square square, Player p) {
 		setLayout(null);
-		JOptionPane.showMessageDialog(null, "¶Ô²½Æğ£¬ÄãµÄÏÖ½ğ²»×ã£¬ÔİÇÒÎŞ·¨¹ºÂò¸ÃÍÁµØ£¡");
+		JOptionPane.showMessageDialog(null, "å¯¹æ­¥èµ·ï¼Œä½ çš„ç°é‡‘ä¸è¶³ï¼Œæš‚ä¸”æ— æ³•è´­ä¹°è¯¥åœŸåœ°ï¼");
 	}
 	
 	public <CloseWindowIn5> OpEvent(Land land, Player p) {
@@ -31,7 +31,7 @@ public class OpEvent extends JPanel implements ActionListener, Runnable {
 	public void run() {
 		try {
 			Thread.sleep(2000);
-			setVisible(false); // ¹Ø±Õ´°¿Ú
+			setVisible(false); // å…³é—­çª—å£
 			// System.exit(0);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -39,19 +39,19 @@ public class OpEvent extends JPanel implements ActionListener, Runnable {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// ÂòµØ
+		// ä¹°åœ°
 		// if (e.getSource() == btLandOK) {
 		// if (p.getCash() < 1000) {
-		// JOptionPane.showMessageDialog(null, "¶î£¬ÍÁºÀ£¬ÏÈÈ¥È¡µãÇ®°É£¬ÄãµÄÇ®²»¶àÁË¡£¡£");
+		// JOptionPane.showMessageDialog(null, "é¢ï¼ŒåœŸè±ªï¼Œå…ˆå»å–ç‚¹é’±å§ï¼Œä½ çš„é’±ä¸å¤šäº†ã€‚ã€‚");
 		// this.setVisible(false);
 		// } else {
 		// land[location].setOwner(p.getName());
 		// p.setCash(-1000);
 		// this.setVisible(false);
-		// JOptionPane.showMessageDialog(null, "¹§Ï²£¡¹ºÂò³É¹¦£¡");
+		// JOptionPane.showMessageDialog(null, "æ­å–œï¼è´­ä¹°æˆåŠŸï¼");
 		// }
 		// }
-		// // ²»ÂòµØ
+		// // ä¸ä¹°åœ°
 		// if (e.getSource() == btLandNO) {
 		// this.setVisible(false);
 		// }

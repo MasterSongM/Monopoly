@@ -4,11 +4,11 @@ import java.util.*;
 
 public class Player {
 	int jailDays = 0;
-	private String name = "";// ¼ÇÂ¼Íæ¼ÒĞÕÃû
-	private int cash = 3456;// Íæ¼ÒÏÖ½ğ µ¥Î»£º·Ö
-	//private int gold = 100;// Íæ¼ÒµãÈ¯
-	private int houseNum = 0;// Íæ¼Ò·¿²úÊıÁ¿ µ¥Î»£º·Ö
-	private int location = 0;// µØµã´ú±ímap1ÖĞµÄÎ»ÖÃ ´Ó0µ½39£¬È»ºó»Øµ½0
+	private String name = "";// è®°å½•ç©å®¶å§“å
+	private int cash = 3456;// ç©å®¶ç°é‡‘ å•ä½ï¼šåˆ†
+	//private int gold = 100;// ç©å®¶ç‚¹åˆ¸
+	private int houseNum = 0;// ç©å®¶æˆ¿äº§æ•°é‡ å•ä½ï¼šåˆ†
+	private int location = 0;// åœ°ç‚¹ä»£è¡¨map1ä¸­çš„ä½ç½® ä»0åˆ°39ï¼Œç„¶åå›åˆ°0
 
 	Player() {
 	}
@@ -23,7 +23,7 @@ public class Player {
 	public void setJailDays(int jailDays) {
 		this.jailDays = jailDays;
 	}
-	// ÏÂÃæ¶¼ÊÇ¸÷¸öÖµµÃGET,SET
+	// ä¸‹é¢éƒ½æ˜¯å„ä¸ªå€¼å¾—GET,SET
 	public String getName() {
 		return name;
 	}
@@ -56,10 +56,10 @@ public class Player {
 
 	public void setLocation(int m) {
 
-		// ¿ØÖÆÍæ¼ÒµÄĞĞ×ßµÄÂ·ÏßºÍ²½Êı
+		// æ§åˆ¶ç©å®¶çš„è¡Œèµ°çš„è·¯çº¿å’Œæ­¥æ•°
 		location += m;
 
-		// ´óÓÚ40Ê±ÒªÈ¡Óà
+		// å¤§äº40æ—¶è¦å–ä½™
 		if(location > 40) {
 			location = location % 40;
 			setCash(200);
@@ -76,7 +76,7 @@ public class Player {
 		houseNum++;
 	}
 
-//getters & setters ÒÔÍâµÄº¯Êı
+//getters & setters ä»¥å¤–çš„å‡½æ•°
 	public boolean buyLand(Land a) {
 		if(a.getBuyprice() <= this.getCash()) {
 			setCash(-a.getBuyprice());

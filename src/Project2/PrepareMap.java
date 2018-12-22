@@ -41,7 +41,7 @@ public class PrepareMap extends JFrame {
 		preparebt1.addActionListener(listener);
 		preparebt2.addActionListener(listener);
 		// TestBigMap a = new TestBigMap( x, y);
-		setTitle("´ó¸»ÎÌ");
+		setTitle("å¤§å¯Œç¿");
 		// add(new PrepareMap(x,y));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(800, 440);
@@ -65,7 +65,7 @@ public class PrepareMap extends JFrame {
 			if (e.getSource() == preparebt2) {
 //				AIPlay ai = new AIPlay();
 //				ai.setVisible(true);
-				System.out.println("»úÆ÷ÈËÕıÔÚ¿ª·¢ÖĞ£¬¾´ÇëÆÚ´ı£¡");
+				System.out.println("æœºå™¨äººæ­£åœ¨å¼€å‘ä¸­ï¼Œæ•¬è¯·æœŸå¾…ï¼");
 			}
 		}
 	}

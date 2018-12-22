@@ -11,9 +11,9 @@ import javax.swing.border.TitledBorder;
 
 public class PlayerPanel extends JLabel {
 	JPanel playerPanel = new JPanel(new GridLayout(2, 2));
-	JLabel avatar = new JLabel();//Í·Ïñ
-	JLabel name = new JLabel();//Ãû³Æ
-	JLabel cash = new JLabel();//ÏÖ½ğ
+	JLabel avatar = new JLabel();//å¤´åƒ
+	JLabel name = new JLabel();//åç§°
+	JLabel cash = new JLabel();//ç°é‡‘
 	JLabel more = new JLabel();//
 	PlayerPanel(Player a, ImageIcon img){
 		Font font = new Font("Times", Font.ITALIC, 20);
@@ -22,11 +22,11 @@ public class PlayerPanel extends JLabel {
 		playerPanel.add(name);
 		name.setText(a.getName());
 		playerPanel.add(cash);
-		cash.setText("ÏÖ½ğ:"+a.getCash());
+		cash.setText("ç°é‡‘:"+a.getCash());
 		playerPanel.add(more);
-		more.setText("µØ²úÊı:"+0);
+		more.setText("åœ°äº§æ•°:"+0);
 		name.setFont(font);
 		name.setForeground(Color.RED);
-		playerPanel.setBorder(new TitledBorder("Íæ¼ÒĞÅÏ¢"));
+		playerPanel.setBorder(new TitledBorder("ç©å®¶ä¿¡æ¯"));
 	}
 }

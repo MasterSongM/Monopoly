@@ -6,14 +6,14 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Land extends Square{
-	private int block = 0;// ÊÇ·ñÓĞÂ·ÕÏ 0ÎŞÂ·ÕÏ1ÓĞÂ·ÕÏ
-	private int street = 0;// ËùÊô½ÖµÀ
-	private int houseLevel = 0;// ·¿ÎİµÈ¼¶
-	private int houseValue[] = new int[5];// ·¿Îİ¼ÛÖµ
-	private String itemName = "";// ·¿ÎİÃû×Ö
-	private Player owner;// ·¿ÎİÖ÷ÈË
+	private int block = 0;// æ˜¯å¦æœ‰è·¯éšœ 0æ— è·¯éšœ1æœ‰è·¯éšœ
+	private int street = 0;// æ‰€å±è¡—é“
+	private int houseLevel = 0;// æˆ¿å±‹ç­‰çº§
+	private int houseValue[] = new int[5];// æˆ¿å±‹ä»·å€¼
+	private String itemName = "";// æˆ¿å±‹åå­—
+	private Player owner;// æˆ¿å±‹ä¸»äºº
 	private int buyprice;
-	private int status = 0;//1±íÊ¾Î´±»µÖÑº
+	private int status = 0;//1è¡¨ç¤ºæœªè¢«æŠµæŠ¼
 	private int buildprice;
 	private int[] paidmoney = new int[5];
 	List<Land> neighbour;
@@ -119,7 +119,7 @@ public class Land extends Square{
 			houseLevel += 1;
 			return true;
 		} else {
-			JOptionPane.showMessageDialog(null,"½¨Ôì²»ºÏ·¨");
+			JOptionPane.showMessageDialog(null,"å»ºé€ ä¸åˆæ³•");
 			return false;
 			// reject
 		}
@@ -153,7 +153,7 @@ public class Land extends Square{
 			houseLevel-=1;
 			return true;
 		} else {
-			JOptionPane.showMessageDialog(null,"²ğ·¿²»ºÏ·¨");
+			JOptionPane.showMessageDialog(null,"æ‹†æˆ¿ä¸åˆæ³•");
 			return false;
 			// reject
 		}
@@ -186,7 +186,7 @@ public class Land extends Square{
 			status=0;
 			return true;
 		} else {
-			JOptionPane.showMessageDialog(null,"µÖÑº²»ºÏ·¨");
+			JOptionPane.showMessageDialog(null,"æŠµæŠ¼ä¸åˆæ³•");
 			return false;
 			// reject
 		}
@@ -197,7 +197,7 @@ public class Land extends Square{
 			status=1;
 			return true;
 		} else {
-			JOptionPane.showMessageDialog(null,"Êê»Ø²»ºÏ·¨");
+			JOptionPane.showMessageDialog(null,"èµå›ä¸åˆæ³•");
 			return false;
 			// reject
 		}
@@ -227,7 +227,7 @@ public class Land extends Square{
 		this.owner = q;
 	}
 
-	// ¹¹Ôìº¯Êı
+	// æ„é€ å‡½æ•°
 	public Land() {
 	}
 

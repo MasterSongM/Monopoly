@@ -9,10 +9,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 
 public class StartMap extends JFrame {
 	PrepareMap a = new PrepareMap(2);
@@ -56,7 +52,7 @@ public class StartMap extends JFrame {
 
 	public static void main(String[] args) {
 		StartMap frame = new StartMap();
-		frame.setTitle("´ó¸»ÎÌ");
+		frame.setTitle("ï¿½ï¿½ï¿½ï¿½");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(486, 336);
 		frame.setLocationRelativeTo(null);// Center the frame
