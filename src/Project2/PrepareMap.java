@@ -13,8 +13,7 @@ public class PrepareMap extends JFrame {
 	private ImageIcon prepareMap = new ImageIcon("icons/start/choose.jpg");
 	private ImageIcon prepareBt1 = new ImageIcon("icons/start/P2P.jpg");
 	private ImageIcon prepareBt2 = new ImageIcon("icons/start/P2C.jpg");
-	Player x = BigMap.a;
-	Player y = BigMap.b;
+	
 	// Create a label as background picture
 	JLabel prepareImage = new JLabel(prepareMap);
 
@@ -22,7 +21,7 @@ public class PrepareMap extends JFrame {
 	JButton preparebt1 = new JButton(prepareBt1);
 	JButton preparebt2 = new JButton(prepareBt2);
 
-	public PrepareMap(Player x, Player y) {
+	public PrepareMap(int pNum) {
 		setLayout(null);
 
 		// Put buttons into label
@@ -56,7 +55,7 @@ public class PrepareMap extends JFrame {
 		// TestBigMap a = new TestBigMap(x,y);
 		// }
 		public void actionPerformed(ActionEvent e) {
-			TestBigMap a = new TestBigMap(x, y);
+			TestBigMap a = new TestBigMap(2);
 			if (e.getSource() == preparebt1) {
 				// System.out.println("11111");
 				a.setVisible(true);

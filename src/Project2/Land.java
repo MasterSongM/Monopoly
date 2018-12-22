@@ -3,17 +3,19 @@ package Project2;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class Land extends Square{
 	private int block = 0;// 是否有路障 0无路障1有路障
 	private int street = 0;// 所属街道
-	private int houseLevel = 1;// 房屋等级
+	private int houseLevel = 0;// 房屋等级
 	private int houseValue[] = new int[5];// 房屋价值
 	private String itemName = "";// 房屋名字
-	private String owner = "无";// 房屋主人
+	private Player owner;// 房屋主人
 	private int buyprice;
-	private int status = 0;
+	private int status = 0;//1表示抵押状态
 	private int buildprice;
-	private int[] paidmoney;
+	private int[] paidmoney = new int[5];
 	List<Land> neighbour;
 	public int getId() {
 		return id;
@@ -112,11 +114,11 @@ public class Land extends Square{
 	}
 
 	void build(Player a) {
-		if (checkbuild()&&owner==a.getName()) {
+		if (checkbuild() && owner.getName() == a.getName()&& houseLevel<5) {
 			a.setCash(-buildprice);
 			houseLevel += 1;
 		} else {
-			System.out.println("建造不合法");
+			JOptionPane.showMessageDialog(null,"建造不合法");
 			// reject
 		}
 	}
@@ -144,11 +146,11 @@ public class Land extends Square{
 	}
 
 	void demolish(Player a) {
-		if (checkbuild()&&owner==a.getName()) {
+		if (checkbuild() && owner.getName() ==a.getName()&& houseLevel>=1) {
 			a.setCash(1 / 2 * buildprice);
 			houseLevel-=1;
 		} else {
-			System.out.println("拆房不合法");
+			JOptionPane.showMessageDialog(null,"拆房不合法");
 			// reject
 		}
 	}
@@ -175,11 +177,11 @@ public class Land extends Square{
 		return true;
 	}
 	void mortgage(Player a) {
-		if (checkmortgage()) {
+		if (checkmortgage()&&status==1) {
 			a.setCash(1 / 2 * buildprice);
-			houseLevel-=1;
+			status=0;
 		} else {
-			System.out.println("抵押不合法");
+			JOptionPane.showMessageDialog(null,"抵押不合法");
 			// reject
 		}
 	}
@@ -200,11 +202,11 @@ public class Land extends Square{
 		else
 			return false;
 	}
-	public String getOwner() {
+	public Player getOwner() {
 		return owner;
 	}
 
-	public void setOwner(String q) {
+	public void setOwner(Player q) {
 		this.owner = q;
 	}
 
@@ -212,20 +214,13 @@ public class Land extends Square{
 	public Land() {
 	}
 
-	// File read
-	public void readOwner(String owner) {
-		this.owner = owner;
+	public boolean collect(Player p) {
+		if(p.getCash() < this.getPaidmoney())	return false;
+		else {
+			p.setCash(-this.getPaidmoney());
+			this.owner.setCash(this.getPaidmoney());
+			return true;
+		}
 	}
 
-	public void readHouseValue(int[] houseValue) {
-		this.houseValue = houseValue;
-	}
-
-	public void readLevel(int houseLevel) {
-		this.houseLevel = houseLevel;
-	}
-
-	public void readItemName(String itemName) {
-		this.itemName = itemName;
-	}
 }

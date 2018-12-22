@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class OpEvent extends JPanel implements ActionListener, Runnable {
-	int conPlay = BigMap.conPlay;
-	BigMap listenerMoney1 = new BigMap();
-	BigMap.TimerPropMoneyListener listenerMoney2 = listenerMoney1.new TimerPropMoneyListener();
 	JLabel tipBuy = new JLabel();
 	JLabel tipLevel = new JLabel();
 	JLabel tipDo = new JLabel();
@@ -22,13 +19,12 @@ public class OpEvent extends JPanel implements ActionListener, Runnable {
 	
 	public <CloseWindowIn5> OpEvent(Square square, Player p) {
 		setLayout(null);
+		JOptionPane.showMessageDialog(null, "对步起，你的现金不足，暂且无法购买该土地！");
 	}
 	
-	public <CloseWindowIn5> OpEvent(Land land, Player p, Player np) {
+	public <CloseWindowIn5> OpEvent(Land land, Player p) {
 		setLayout(null);
-		if(land.getOwner()==null) {//
-			
-		}
+		
 	}
 
 

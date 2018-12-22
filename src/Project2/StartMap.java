@@ -15,9 +15,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class StartMap extends JFrame {
-	Player x = BigMap.a;
-	Player y = BigMap.b;
-	PrepareMap a = new PrepareMap(x, y);
+	PrepareMap a = new PrepareMap(2);
 	// TestBigMap a = new TestBigMap(new Player(),new Player());
 	private ImageIcon startImage = new ImageIcon("icons/start/index.jpg");
 	private ImageIcon btImage1 = new ImageIcon("icons/start/bt1.jpg");
