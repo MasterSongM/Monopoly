@@ -13,6 +13,8 @@ import java.awt.event.*;
 public class BigMap extends JPanel {// implements java.io.Serializable {
 
 	public int pNum = 2;//玩家数量
+	Dice diceObject1 = new Dice();
+	Dice diceObject2 = new Dice();
 	boolean isForwarding = false;
 	// The background map
 	int conDice = 0;
@@ -118,6 +120,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	private ImageIcon dice_6 = new ImageIcon("icons/dice6.png");
 	
 	//房子等级图标
+	private ImageIcon mortgaged = new ImageIcon("icons/buttons/mortgaged.png");
 	private ImageIcon house0 = new ImageIcon("icons/buttons/0house.png");
 	private ImageIcon house1 = new ImageIcon("icons/buttons/1house.png");
 	private ImageIcon house2 = new ImageIcon("icons/buttons/2house.png");
@@ -694,7 +697,8 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	JButton mortBtn = new JButton("抵押");
 	JButton redeemBtn = new JButton("赎回");
 	
-	//MyJButtons
+	//土地格子
+	List<JLabel> squareView = new ArrayList<JLabel>();
 	JLabel btn00 = new JLabel(new ImageIcon("icons/buttons/startPoint.png"));
 	JLabel btn01 = new JLabel(house0);
 	JLabel btn02 = new JLabel(house0);
@@ -735,6 +739,51 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	JLabel btn37 = new JLabel(house0);
 	JLabel btn38 = new JLabel(house0);
 	JLabel btn39 = new JLabel(house0);
+	{
+		squareView.add(btn00);
+		squareView.add(btn01);
+		squareView.add(btn02);
+		squareView.add(btn03);
+		squareView.add(btn04);
+		squareView.add(btn05);
+		squareView.add(btn06);
+		squareView.add(btn07);
+		squareView.add(btn08);
+		squareView.add(btn09);
+		
+		squareView.add(btn10);
+		squareView.add(btn11);
+		squareView.add(btn12);
+		squareView.add(btn13);
+		squareView.add(btn14);
+		squareView.add(btn15);
+		squareView.add(btn16);
+		squareView.add(btn17);
+		squareView.add(btn18);
+		squareView.add(btn19);
+
+		squareView.add(btn20);
+		squareView.add(btn21);
+		squareView.add(btn22);
+		squareView.add(btn23);
+		squareView.add(btn24);
+		squareView.add(btn25);
+		squareView.add(btn26);
+		squareView.add(btn27);
+		squareView.add(btn28);
+		squareView.add(btn29);
+		
+		squareView.add(btn30);
+		squareView.add(btn31);
+		squareView.add(btn32);
+		squareView.add(btn33);
+		squareView.add(btn34);
+		squareView.add(btn35);
+		squareView.add(btn36);
+		squareView.add(btn37);
+		squareView.add(btn38);
+		squareView.add(btn39);
+	}
 	
 	//
 
@@ -971,7 +1020,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 		        		case 7:
 		        		case 8:
 		        		case 9:
-		        			Land t = (Land)squares.get(i);
+		        			Land t = (Land)squares.get(temp);
 		        			if(t.getOwner() != null) {
 		        				if(t.getOwner() == players.get(playerNum) && t.getStatus() == 1) {
 		        					JButton tempButton= sellArray.get(temp);
@@ -1044,6 +1093,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 						players.get(playerNum).setJailDays(0);
 					}
 					else {//跳过掷骰子步骤
+						System.out.println("因为在监狱里而跳过掷骰子~");
 						showFinished();
 					}
 				}
@@ -1109,8 +1159,8 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 				if (conDice > 30) {
 					isForwarding = true;//开始前进动画
 					timer.stop();
-					diceResult1 = (int) (Math.random() * 6 + 1);
-					diceResult2 = (int) (Math.random() * 6 + 1);
+					diceResult1 = diceObject1.dice();
+					diceResult2 = diceObject2.dice();
 					diceResult = diceResult1 + diceResult2;
 					
 					switch (diceResult1) {
@@ -1190,6 +1240,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 								playerIcon2.setBounds(bounds[10][0]+px2, bounds[10][1]+py2, 20, 30);
 								break;
 							}
+							System.out.println("因为三次掷出了相同点数而跳过掷骰子~");
 							showFinished();
 						}
 					}
@@ -1228,13 +1279,31 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 					players.get(playerNum).setLocation(diceResult);
 					//前进完毕，处理到达土地后的事件
 					int squareNum = players.get(playerNum).getLocation();
-					switch(squareNum%10){
+					switch(squareNum){
 						case 1:
 						case 2:
 						case 3:
 						case 7:
 						case 8:
 						case 9:
+						case 11:
+						case 12:
+						case 13:
+						case 17:
+						case 18:
+						case 19:
+						case 21:
+						case 22:
+						case 23:
+						case 27:
+						case 28:
+						case 29:
+						case 31:
+						case 32:
+						case 33:
+						case 37:
+						case 38:
+						case 39:
 						System.out.println("到达了一块可交易土地");
 						Land currentLocation = (Land)(squares.get(squareNum));
 						System.out.println(players.get(playerNum).getName()+"的当前位置 : "
@@ -1264,8 +1333,13 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 							default:
 							}
 					}
-					
-					showFinished();
+					if(diceResult1 != diceResult2) {
+						System.out.println("正常结束而不再掷骰子");
+						showFinished();
+					}
+					else {
+						isForwarding = false; 
+					}
 					conPlay++;
 					step = 0;
 					diceResult = 0;
@@ -1852,119 +1926,23 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	class TradeListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Clicked TradeListenerS!");
-			switch (e.getActionCommand()) {
-			case "tButton01":
-				new OpEvent(new Land(), players.get(1)).setVisible(true);
-				System.out.println("Try to trade Square 01 !");
-				if(true) {
-					
-				}
-				break;
-			case "tButton02":
-				System.out.println("Try to trade Square 02 !");
-				break;
-			case "tButton03":
-				System.out.println("Try to trade Square 03 !");
-				break;
-			case "tButton04":
-				System.out.println("Try to trade Square 04 !");
-				break;
-			case "tButton05":
-				System.out.println("Try to trade Square 05 !");
-				break;
-			case "tButton06":
-				System.out.println("Try to trade Square 06 !");
-				break;
-			case "tButton07":
-				System.out.println("Try to trade Square 07 !");
-				break;
-			case "tButton08":
-				System.out.println("Try to trade Square 08 !");
-				break;
-			case "tButton09":
-				System.out.println("Try to trade Square 09 !");
-				break;
-			case "tButton11":
-				System.out.println("Try to trade Square 11 !");
-				break;
-			case "tButton12":
-				System.out.println("Try to trade Square 12 !");
-				break;
-			case "tButton13":
-				System.out.println("Try to trade Square 13 !");
-				break;
-			case "tButton14":
-				System.out.println("Try to trade Square 14 !");
-				break;
-			case "tButton15":
-				System.out.println("Try to trade Square 15 !");
-				break;
-			case "tButton16":
-				System.out.println("Try to trade Square 16 !");
-				break;
-			case "tButton17":
-				System.out.println("Try to trade Square 17 !");
-				break;
-			case "tButton18":
-				System.out.println("Try to trade Square 18 !");
-				break;
-			case "tButton19":
-				System.out.println("Try to trade Square 19 !");
-				break;
-			case "tButton21":
-				System.out.println("Try to trade Square 21 !");
-				break;
-			case "tButton22":
-				System.out.println("Try to trade Square 22 !");
-				break;
-			case "tButton23":
-				System.out.println("Try to trade Square 23 !");
-				break;
-			case "tButton24":
-				System.out.println("Try to trade Square 24 !");
-				break;
-			case "tButton25":
-				System.out.println("Try to trade Square 25 !");
-				break;
-			case "tButton26":
-				System.out.println("Try to trade Square 26 !");
-				break;
-			case "tButton27":
-				System.out.println("Try to trade Square 27 !");
-				break;
-			case "tButton28":
-				System.out.println("Try to trade Square 28 !");
-				break;
-			case "tButton29":
-				System.out.println("Try to trade Square 29 !");
-				break;
-			case "tButton31":
-				System.out.println("Try to trade Square 31 !");
-				break;
-			case "tButton32":
-				System.out.println("Try to trade Square 32 !");
-				break;
-			case "tButton33":
-				System.out.println("Try to trade Square 33 !");
-				break;
-			case "tButton34":
-				System.out.println("Try to trade Square 34 !");
-				break;
-			case "tButton35":
-				System.out.println("Try to trade Square 35 !");
-				break;
-			case "tButton36":
-				System.out.println("Try to trade Square 36 !");
-				break;
-			case "tButton37":
-				System.out.println("Try to trade Square 37 !");
-				break;
-			case "tButton38":
-				System.out.println("Try to trade Square 38 !");
-				break;
-			case "tButton39":
-				System.out.println("Try to trade Square 39 !");
-				break;
+			int tempIndex = tradeArray.indexOf(e.getSource());
+			System.out.println("Try to build house on Square "+tempIndex + " !");
+			Land change = (Land)(squares.get(tempIndex));
+			Player operator = players.get(playerNum);
+			Player tradeTo = change.getOwner();
+			String num=JOptionPane.showInputDialog(null,"交易金额");
+			int op = JOptionPane.showConfirmDialog(null,tradeTo.getName()+
+					",你是否愿意以"+num+"\n将土地售卖给"+operator.getName()+"?","提示",JOptionPane.YES_NO_CANCEL_OPTION); 
+			int b = Integer.valueOf(num).intValue();
+			if(op==JOptionPane.YES_OPTION){ 
+				change.setOwner(operator);
+				operator.setCash(-b);
+				tradeTo.setCash(b);
+				showOwner(tempIndex);
+				reset();
+				jp.repaint();
+			}else if(op==JOptionPane.NO_OPTION){ 
 			}
 		}
 	}
@@ -1973,115 +1951,31 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	class BuildListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Clicked BuildListenerS!");
-			switch (e.getActionCommand()) {
-			case "bButton01":
-				System.out.println("Try to build Square 01 !");
-				break;
-			case "bButton02":
-				System.out.println("Try to build Square 02 !");
-				break;
-			case "bButton03":
-				System.out.println("Try to build Square 03 !");
-				break;
-			case "bButton04":
-				System.out.println("Try to build Square 04 !");
-				break;
-			case "bButton05":
-				System.out.println("Try to build Square 05 !");
-				break;
-			case "bButton06":
-				System.out.println("Try to build Square 06 !");
-				break;
-			case "bButton07":
-				System.out.println("Try to build Square 07 !");
-				break;
-			case "bButton08":
-				System.out.println("Try to build Square 08 !");
-				break;
-			case "bButton09":
-				System.out.println("Try to build Square 09 !");
-				break;
-			case "bButton11":
-				System.out.println("Try to build Square 11 !");
-				break;
-			case "bButton12":
-				System.out.println("Try to build Square 12 !");
-				break;
-			case "bButton13":
-				System.out.println("Try to build Square 13 !");
-				break;
-			case "bButton14":
-				System.out.println("Try to build Square 14 !");
-				break;
-			case "bButton15":
-				System.out.println("Try to build Square 15 !");
-				break;
-			case "bButton16":
-				System.out.println("Try to build Square 16 !");
-				break;
-			case "bButton17":
-				System.out.println("Try to build Square 17 !");
-				break;
-			case "bButton18":
-				System.out.println("Try to build Square 18 !");
-				break;
-			case "bButton19":
-				System.out.println("Try to build Square 19 !");
-				break;
-			case "bButton21":
-				System.out.println("Try to build Square 21 !");
-				break;
-			case "bButton22":
-				System.out.println("Try to build Square 22 !");
-				break;
-			case "bButton23":
-				System.out.println("Try to build Square 23 !");
-				break;
-			case "bButton24":
-				System.out.println("Try to build Square 24 !");
-				break;
-			case "bButton25":
-				System.out.println("Try to build Square 25 !");
-				break;
-			case "bButton26":
-				System.out.println("Try to build Square 26 !");
-				break;
-			case "bButton27":
-				System.out.println("Try to build Square 27 !");
-				break;
-			case "bButton28":
-				System.out.println("Try to build Square 28 !");
-				break;
-			case "bButton29":
-				System.out.println("Try to build Square 29 !");
-				break;
-			case "bButton31":
-				System.out.println("Try to build Square 31 !");
-				break;
-			case "bButton32":
-				System.out.println("Try to build Square 32 !");
-				break;
-			case "bButton33":
-				System.out.println("Try to build Square 33 !");
-				break;
-			case "bButton34":
-				System.out.println("Try to build Square 34 !");
-				break;
-			case "bButton35":
-				System.out.println("Try to build Square 35 !");
-				break;
-			case "bButton36":
-				System.out.println("Try to build Square 36 !");
-				break;
-			case "bButton37":
-				System.out.println("Try to build Square 37 !");
-				break;
-			case "bButton38":
-				System.out.println("Try to build Square 38 !");
-				break;
-			case "bButton39":
-				System.out.println("Try to build Square 39 !");
-				break;
+			int tempIndex = buildArray.indexOf(e.getSource());
+			System.out.println("Try to build house on Square "+tempIndex + " !");
+			Land tempLand = (Land)(squares.get(tempIndex));
+			boolean boo = tempLand.build(players.get(playerNum));
+			if(!boo) {
+				if(boo) {
+					switch(tempLand.getHouseLevel()) {
+					case 1:
+						squareView.get(tempIndex).setIcon(house1);
+						break;
+					case 2:
+						squareView.get(tempIndex).setIcon(house2);
+						break;
+					case 3:
+						squareView.get(tempIndex).setIcon(house3);
+						break;
+					case 4:
+						squareView.get(tempIndex).setIcon(house4);
+						break;
+					case 5:
+						squareView.get(tempIndex).setIcon(house5);
+						break;
+					default:
+					}
+				}
 			}
 		}
 	}
@@ -2089,116 +1983,29 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	// 卖房事件监听器
 	class SellListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Clicked SellListenerS!");
-			switch (e.getActionCommand()) {
-			case "sButton01":
-				System.out.println("Try to sell house on Square 01 !");
-				break;
-			case "sButton02":
-				System.out.println("Try to sell house on Square 02 !");
-				break;
-			case "sButton03":
-				System.out.println("Try to sell house on Square 03 !");
-				break;
-			case "sButton04":
-				System.out.println("Try to sell house on Square 04 !");
-				break;
-			case "sButton05":
-				System.out.println("Try to sell house on Square 05 !");
-				break;
-			case "sButton06":
-				System.out.println("Try to sell house on Square 06 !");
-				break;
-			case "sButton07":
-				System.out.println("Try to sell house on Square 07 !");
-				break;
-			case "sButton08":
-				System.out.println("Try to sell house on Square 08 !");
-				break;
-			case "sButton09":
-				System.out.println("Try to sell house on Square 09 !");
-				break;
-			case "sButton11":
-				System.out.println("Try to sell house on Square 11 !");
-				break;
-			case "sButton12":
-				System.out.println("Try to sell house on Square 12 !");
-				break;
-			case "sButton13":
-				System.out.println("Try to sell house on Square 13 !");
-				break;
-			case "sButton14":
-				System.out.println("Try to sell house on Square 14 !");
-				break;
-			case "sButton15":
-				System.out.println("Try to sell house on Square 15 !");
-				break;
-			case "sButton16":
-				System.out.println("Try to sell house on Square 16 !");
-				break;
-			case "sButton17":
-				System.out.println("Try to sell house on Square 17 !");
-				break;
-			case "sButton18":
-				System.out.println("Try to sell house on Square 18 !");
-				break;
-			case "sButton19":
-				System.out.println("Try to sell house on Square 19 !");
-				break;
-			case "sButton21":
-				System.out.println("Try to sell house on Square 21 !");
-				break;
-			case "sButton22":
-				System.out.println("Try to sell house on Square 22 !");
-				break;
-			case "sButton23":
-				System.out.println("Try to sell house on Square 23 !");
-				break;
-			case "sButton24":
-				System.out.println("Try to sell house on Square 24 !");
-				break;
-			case "sButton25":
-				System.out.println("Try to sell house on Square 25 !");
-				break;
-			case "sButton26":
-				System.out.println("Try to sell house on Square 26 !");
-				break;
-			case "sButton27":
-				System.out.println("Try to sell house on Square 27 !");
-				break;
-			case "sButton28":
-				System.out.println("Try to sell house on Square 28 !");
-				break;
-			case "sButton29":
-				System.out.println("Try to sell house on Square 29 !");
-				break;
-			case "sButton31":
-				System.out.println("Try to sell house on Square 31 !");
-				break;
-			case "sButton32":
-				System.out.println("Try to sell house on Square 32 !");
-				break;
-			case "sButton33":
-				System.out.println("Try to sell house on Square 33 !");
-				break;
-			case "sButton34":
-				System.out.println("Try to sell house on Square 34 !");
-				break;
-			case "sButton35":
-				System.out.println("Try to sell house on Square 35 !");
-				break;
-			case "sButton36":
-				System.out.println("Try to sell house on Square 36 !");
-				break;
-			case "sButton37":
-				System.out.println("Try to sell house on Square 37 !");
-				break;
-			case "sButton38":
-				System.out.println("Try to sell house on Square 38 !");
-				break;
-			case "sButton39":
-				System.out.println("Try to sell house on Square 39 !");
-				break;
+			int tempIndex = sellArray.indexOf(e.getSource());
+			System.out.println("Try to mort Square "+tempIndex + " !");
+			Land tempLand = (Land)(squares.get(tempIndex));
+			boolean boo = tempLand.demolish(players.get(playerNum));
+			if(boo) {
+				switch(tempLand.getHouseLevel()) {
+				case 0:
+					squareView.get(tempIndex).setIcon(house0);
+					break;
+				case 1:
+					squareView.get(tempIndex).setIcon(house1);
+					break;
+				case 2:
+					squareView.get(tempIndex).setIcon(house2);
+					break;
+				case 3:
+					squareView.get(tempIndex).setIcon(house3);
+					break;
+				case 4:
+					squareView.get(tempIndex).setIcon(house4);
+					break;
+				default:
+				}
 			}
 		}
 	}
@@ -2207,115 +2014,18 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	class MortListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Clicked MortListenerS!");
-			switch (e.getActionCommand()) {
-			case "mButton01":
-				System.out.println("Try to mortgage Square 01 !");
-				break;
-			case "mButton02":
-				System.out.println("Try to mortgage Square 02 !");
-				break;
-			case "mButton03":
-				System.out.println("Try to mortgage Square 03 !");
-				break;
-			case "mButton04":
-				System.out.println("Try to mortgage Square 04 !");
-				break;
-			case "mButton05":
-				System.out.println("Try to mortgage Square 05 !");
-				break;
-			case "mButton06":
-				System.out.println("Try to mortgage Square 06 !");
-				break;
-			case "mButton07":
-				System.out.println("Try to mortgage Square 07 !");
-				break;
-			case "mButton08":
-				System.out.println("Try to mortgage Square 08 !");
-				break;
-			case "mButton09":
-				System.out.println("Try to mortgage Square 09 !");
-				break;
-			case "mButton11":
-				System.out.println("Try to mortgage Square 11 !");
-				break;
-			case "mButton12":
-				System.out.println("Try to mortgage Square 12 !");
-				break;
-			case "mButton13":
-				System.out.println("Try to mortgage Square 13 !");
-				break;
-			case "mButton14":
-				System.out.println("Try to mortgage Square 14 !");
-				break;
-			case "mButton15":
-				System.out.println("Try to mortgage Square 15 !");
-				break;
-			case "mButton16":
-				System.out.println("Try to mortgage Square 16 !");
-				break;
-			case "mButton17":
-				System.out.println("Try to mortgage Square 17 !");
-				break;
-			case "mButton18":
-				System.out.println("Try to mortgage Square 18 !");
-				break;
-			case "mButton19":
-				System.out.println("Try to mortgage Square 19 !");
-				break;
-			case "mButton21":
-				System.out.println("Try to mortgage Square 21 !");
-				break;
-			case "mButton22":
-				System.out.println("Try to mortgage Square 22 !");
-				break;
-			case "mButton23":
-				System.out.println("Try to mortgage Square 23 !");
-				break;
-			case "mButton24":
-				System.out.println("Try to mortgage Square 24 !");
-				break;
-			case "mButton25":
-				System.out.println("Try to mortgage Square 25 !");
-				break;
-			case "mButton26":
-				System.out.println("Try to mortgage Square 26 !");
-				break;
-			case "mButton27":
-				System.out.println("Try to mortgage Square 27 !");
-				break;
-			case "mButton28":
-				System.out.println("Try to mortgage Square 28 !");
-				break;
-			case "mButton29":
-				System.out.println("Try to mortgage Square 29 !");
-				break;
-			case "mButton31":
-				System.out.println("Try to mortgage Square 31 !");
-				break;
-			case "mButton32":
-				System.out.println("Try to mortgage Square 32 !");
-				break;
-			case "mButton33":
-				System.out.println("Try to mortgage Square 33 !");
-				break;
-			case "mButton34":
-				System.out.println("Try to mortgage Square 34 !");
-				break;
-			case "mButton35":
-				System.out.println("Try to mortgage Square 35 !");
-				break;
-			case "mButton36":
-				System.out.println("Try to mortgage Square 36 !");
-				break;
-			case "mButton37":
-				System.out.println("Try to mortgage Square 37 !");
-				break;
-			case "mButton38":
-				System.out.println("Try to mortgage Square 38 !");
-				break;
-			case "mButton39":
-				System.out.println("Try to mortgage Square 39 !");
-				break;
+			int tempIndex = mortArray.indexOf(e.getSource());
+			if(tempIndex != -1) {
+				System.out.println("Try to mort Square "+tempIndex + " !");
+				Land tempLand = (Land)(squares.get(tempIndex));
+				boolean boo = tempLand.mortgage(players.get(playerNum));
+				if(boo) {
+					squareView.get(tempIndex).setIcon(mortgaged);
+					jp.repaint();
+				}
+			}
+			else {
+				
 			}
 		}
 	}
@@ -2324,115 +2034,13 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	class RedeemListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Clicked RedeemListenerS!");
-			switch (e.getActionCommand()) {
-			case "rButton01":
-				System.out.println("Try to redeem Square 01 !");
-				break;
-			case "rButton02":
-				System.out.println("Try to redeem Square 02 !");
-				break;
-			case "rButton03":
-				System.out.println("Try to redeem Square 03 !");
-				break;
-			case "rButton04":
-				System.out.println("Try to redeem Square 04 !");
-				break;
-			case "rButton05":
-				System.out.println("Try to redeem Square 05 !");
-				break;
-			case "rButton06":
-				System.out.println("Try to redeem Square 06 !");
-				break;
-			case "rButton07":
-				System.out.println("Try to redeem Square 07 !");
-				break;
-			case "rButton08":
-				System.out.println("Try to redeem Square 08 !");
-				break;
-			case "rButton09":
-				System.out.println("Try to redeem Square 09 !");
-				break;
-			case "rButton11":
-				System.out.println("Try to redeem Square 11 !");
-				break;
-			case "rButton12":
-				System.out.println("Try to redeem Square 12 !");
-				break;
-			case "rButton13":
-				System.out.println("Try to redeem Square 13 !");
-				break;
-			case "rButton14":
-				System.out.println("Try to redeem Square 14 !");
-				break;
-			case "rButton15":
-				System.out.println("Try to redeem Square 15 !");
-				break;
-			case "rButton16":
-				System.out.println("Try to redeem Square 16 !");
-				break;
-			case "rButton17":
-				System.out.println("Try to redeem Square 17 !");
-				break;
-			case "rButton18":
-				System.out.println("Try to redeem Square 18 !");
-				break;
-			case "rButton19":
-				System.out.println("Try to redeem Square 19 !");
-				break;
-			case "rButton21":
-				System.out.println("Try to redeem Square 21 !");
-				break;
-			case "rButton22":
-				System.out.println("Try to redeem Square 22 !");
-				break;
-			case "rButton23":
-				System.out.println("Try to redeem Square 23 !");
-				break;
-			case "rButton24":
-				System.out.println("Try to redeem Square 24 !");
-				break;
-			case "rButton25":
-				System.out.println("Try to redeem Square 25 !");
-				break;
-			case "rButton26":
-				System.out.println("Try to redeem Square 26 !");
-				break;
-			case "rButton27":
-				System.out.println("Try to redeem Square 27 !");
-				break;
-			case "rButton28":
-				System.out.println("Try to redeem Square 28 !");
-				break;
-			case "rButton29":
-				System.out.println("Try to redeem Square 29 !");
-				break;
-			case "rButton31":
-				System.out.println("Try to redeem Square 31 !");
-				break;
-			case "rButton32":
-				System.out.println("Try to redeem Square 32 !");
-				break;
-			case "rButton33":
-				System.out.println("Try to redeem Square 33 !");
-				break;
-			case "rButton34":
-				System.out.println("Try to redeem Square 34 !");
-				break;
-			case "rButton35":
-				System.out.println("Try to redeem Square 35 !");
-				break;
-			case "rButton36":
-				System.out.println("Try to redeem Square 36 !");
-				break;
-			case "rButton37":
-				System.out.println("Try to redeem Square 37 !");
-				break;
-			case "rButton38":
-				System.out.println("Try to redeem Square 38 !");
-				break;
-			case "rButton39":
-				System.out.println("Try to redeem Square 39 !");
-				break;
+			int tempIndex = redeemArray.indexOf(e.getSource());
+			System.out.println("Try to redeem Square "+tempIndex + " !");
+			Land tempLand = (Land)(squares.get(tempIndex));
+			boolean boo = tempLand.redeem(players.get(playerNum));
+			if(boo) {
+				squareView.get(tempIndex).setIcon(house0);
+				jp.repaint();
 			}
 		}
 	}

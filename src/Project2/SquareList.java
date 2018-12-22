@@ -12,6 +12,7 @@ public class SquareList {
 		Land a = new Land();
 		a.setId(1);
 		a.setBuyprice(200);
+		a.setBuildprice(100);
 		a.setItemName("利比亚");
 		int tmp[] = new int[5];
 		for (int i = 0; i < 5; i++)
@@ -21,6 +22,7 @@ public class SquareList {
 		c.setId(2);
 		c.setBuyprice(220);
 		c.setItemName("苏丹");
+		c.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (c.getBuyprice() * 0.5) * (i+1);
 		c.setPaidmoney(tmp);
@@ -28,6 +30,7 @@ public class SquareList {
 		d.setId(3);
 		d.setBuyprice(250);
 		d.setItemName("土耳其");
+		d.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (d.getBuyprice() * 0.5) * (i+1);
 		d.setPaidmoney(tmp);
@@ -60,6 +63,7 @@ public class SquareList {
 		h.setId(7);
 		h.setBuyprice(200);
 		h.setItemName("希腊");
+		h.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (h.getBuyprice() * 0.5) * (i+1);
 		h.setPaidmoney(tmp);
@@ -67,6 +71,7 @@ public class SquareList {
 		i1.setId(8);
 		i1.setBuyprice(220);
 		i1.setItemName("保加利亚");
+		i1.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (i1.getBuyprice() * 0.5) * (i+1);
 		i1.setPaidmoney(tmp);
@@ -74,6 +79,7 @@ public class SquareList {
 		j.setId(9);
 		j.setBuyprice(250);
 		j.setItemName("波兰");
+		j.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (j.getBuyprice() * 0.5) * (i+1);
 		j.setPaidmoney(tmp);
@@ -100,6 +106,7 @@ public class SquareList {
 		l.setId(11);
 		l.setBuyprice(200);
 		l.setItemName("俄罗斯");
+		l.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (l.getBuyprice() * 0.5) * (i+1);
 		l.setPaidmoney(tmp);
@@ -107,6 +114,7 @@ public class SquareList {
 		m.setId(12);
 		m.setBuyprice(220);
 		m.setItemName("乌克兰");
+		m.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (m.getBuyprice() * 0.5) * (i+1);
 		m.setPaidmoney(tmp);
@@ -114,6 +122,7 @@ public class SquareList {
 		n.setId(13);
 		n.setBuyprice(250);
 		n.setItemName("立陶宛");
+		n.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (n.getBuyprice() * 0.5) * (i+1);
 		n.setPaidmoney(tmp);
@@ -146,6 +155,7 @@ public class SquareList {
 		r.setId(17);
 		r.setBuyprice(200);
 		r.setItemName("拉脱维亚");
+		r.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (r.getBuyprice() * 0.5) * (i+1);
 		r.setPaidmoney(tmp);
@@ -156,10 +166,12 @@ public class SquareList {
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (s.getBuyprice() * 0.5) * (i+1);
 		s.setPaidmoney(tmp);
+		s.setBuildprice(100);
 		Land t = new Land();
 		t.setId(19);
 		t.setBuyprice(250);
 		t.setItemName("爱沙尼亚");
+		t.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (t.getBuyprice() * 0.5) * (i+1);
 		t.setPaidmoney(tmp);
@@ -174,7 +186,7 @@ public class SquareList {
 		List<Land> neigh11 = new ArrayList<Land>();
 		neigh11.add(r);
 		neigh11.add(s);
-		n.setNeighbour(neigh11);
+		t.setNeighbour(neigh11);
 		squares.add(r);
 		squares.add(s);
 		squares.add(t);
@@ -187,6 +199,7 @@ public class SquareList {
 		v.setId(21);
 		v.setBuyprice(200);
 		v.setItemName("挪威");
+		v.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (v.getBuyprice() * 0.5) * (i+1);
 		v.setPaidmoney(tmp);
@@ -194,6 +207,7 @@ public class SquareList {
 		w.setId(22);
 		w.setBuyprice(220);
 		w.setItemName("瑞典");
+		w.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (w.getBuyprice() * 0.5) * (i+1);
 		w.setPaidmoney(tmp);
@@ -201,21 +215,22 @@ public class SquareList {
 		x.setId(23);
 		x.setBuyprice(250);
 		x.setItemName("芬兰");
+		x.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (x.getBuyprice() * 0.5) * (i+1);
 		x.setPaidmoney(tmp);
 		List<Land> neigh12 = new ArrayList<Land>();
 		neigh12.add(w);
 		neigh12.add(x);
-		r.setNeighbour(neigh12);
+		v.setNeighbour(neigh12);
 		List<Land> neigh13 = new ArrayList<Land>();
 		neigh12.add(v);
 		neigh12.add(x);
-		s.setNeighbour(neigh13);
+		w.setNeighbour(neigh13);
 		List<Land> neigh14 = new ArrayList<Land>();
 		neigh13.add(v);
 		neigh13.add(w);
-		n.setNeighbour(neigh14);
+		x.setNeighbour(neigh14);
 		squares.add(v);
 		squares.add(w);
 		squares.add(x);
@@ -234,6 +249,7 @@ public class SquareList {
 		aa.setId(27);
 		aa.setBuyprice(200);
 		aa.setItemName("德国");
+		aa.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (aa.getBuyprice() * 0.5) * (i+1);
 		aa.setPaidmoney(tmp);
@@ -241,6 +257,7 @@ public class SquareList {
 		bb.setId(28);
 		bb.setBuyprice(220);
 		bb.setItemName("法国");
+		bb.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (bb.getBuyprice() * 0.5) * (i+1);
 		bb.setPaidmoney(tmp);
@@ -248,21 +265,22 @@ public class SquareList {
 		cc.setId(29);
 		cc.setBuyprice(250);
 		cc.setItemName("英国");
+		cc.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (cc.getBuyprice() * 0.5) * (i+1);
 		cc.setPaidmoney(tmp);
 		List<Land> neigh15 = new ArrayList<Land>();
 		neigh15.add(bb);
 		neigh15.add(cc);
-		r.setNeighbour(neigh15);
+		aa.setNeighbour(neigh15);
 		List<Land> neigh16 = new ArrayList<Land>();
 		neigh16.add(aa);
 		neigh16.add(cc);
-		s.setNeighbour(neigh16);
+		bb.setNeighbour(neigh16);
 		List<Land> neigh17 = new ArrayList<Land>();
 		neigh17.add(aa);
 		neigh17.add(bb);
-		n.setNeighbour(neigh17);
+		cc.setNeighbour(neigh17);
 		squares.add(aa);
 		squares.add(bb);
 		squares.add(cc);
@@ -275,6 +293,7 @@ public class SquareList {
 		ee.setId(31);
 		ee.setBuyprice(200);
 		ee.setItemName("加拿大");
+		ee.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (ee.getBuyprice() * 0.5) * (i+1);
 		ee.setPaidmoney(tmp);
@@ -282,6 +301,7 @@ public class SquareList {
 		ff.setId(32);
 		ff.setBuyprice(220);
 		ff.setItemName("美国");
+		ff.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (ff.getBuyprice() * 0.5) * (i+1);
 		ff.setPaidmoney(tmp);
@@ -289,21 +309,22 @@ public class SquareList {
 		gg.setId(33);
 		gg.setBuyprice(250);
 		gg.setItemName("墨西哥");
+		gg.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (gg.getBuyprice() * 0.5) * (i+1);
 		gg.setPaidmoney(tmp);
 		List<Land> neigh18 = new ArrayList<Land>();
 		neigh18.add(ff);
 		neigh18.add(gg);
-		r.setNeighbour(neigh18);
+		ee.setNeighbour(neigh18);
 		List<Land> neigh19 = new ArrayList<Land>();
 		neigh19.add(ee);
 		neigh19.add(gg);
-		s.setNeighbour(neigh19);
+		ff.setNeighbour(neigh19);
 		List<Land> neigh20 = new ArrayList<Land>();
 		neigh20.add(ee);
 		neigh20.add(gg);
-		n.setNeighbour(neigh20);
+		gg.setNeighbour(neigh20);
 		squares.add(ee);
 		squares.add(ff);
 		squares.add(gg);
@@ -322,6 +343,7 @@ public class SquareList {
 		kk.setId(27);
 		kk.setBuyprice(200);
 		kk.setItemName("迪拜");
+		kk.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (kk.getBuyprice() * 0.5) * (i+1);
 		kk.setPaidmoney(tmp);
@@ -329,6 +351,7 @@ public class SquareList {
 		ll.setId(28);
 		ll.setBuyprice(220);
 		ll.setItemName("夏威夷");
+		ll.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (ll.getBuyprice() * 0.5) * (i+1);
 		ll.setPaidmoney(tmp);
@@ -336,21 +359,22 @@ public class SquareList {
 		mm.setId(29);
 		mm.setBuyprice(250);
 		mm.setItemName("澳大利亚");
+		mm.setBuildprice(100);
 		for (int i = 0; i < 5; i++)
 			tmp[i] = (int) (mm.getBuyprice() * 0.5) * (i+1);
 		mm.setPaidmoney(tmp);
 		List<Land> neigh21 = new ArrayList<Land>();
 		neigh21.add(ll);
 		neigh21.add(mm);
-		r.setNeighbour(neigh21);
+		kk.setNeighbour(neigh21);
 		List<Land> neigh22 = new ArrayList<Land>();
 		neigh22.add(kk);
 		neigh21.add(mm);
-		s.setNeighbour(neigh22);
+		ll.setNeighbour(neigh22);
 		List<Land> neigh23 = new ArrayList<Land>();
 		neigh23.add(kk);
 		neigh23.add(ll);
-		n.setNeighbour(neigh23);
+		mm.setNeighbour(neigh23);
 		squares.add(kk);
 		squares.add(ll);
 		squares.add(mm);

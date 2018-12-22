@@ -13,7 +13,7 @@ public class Land extends Square{
 	private String itemName = "";// 房屋名字
 	private Player owner;// 房屋主人
 	private int buyprice;
-	private int status = 0;//1表示抵押状态
+	private int status = 0;//1表示未被抵押
 	private int buildprice;
 	private int[] paidmoney = new int[5];
 	List<Land> neighbour;
@@ -113,12 +113,14 @@ public class Land extends Square{
 		return houseLevel;
 	}
 
-	void build(Player a) {
+	boolean build(Player a) {
 		if (checkbuild() && owner.getName() == a.getName()&& houseLevel<5) {
 			a.setCash(-buildprice);
 			houseLevel += 1;
+			return true;
 		} else {
 			JOptionPane.showMessageDialog(null,"建造不合法");
+			return false;
 			// reject
 		}
 	}
@@ -145,12 +147,14 @@ public class Land extends Square{
 		return true;
 	}
 
-	void demolish(Player a) {
+	boolean demolish(Player a) {
 		if (checkbuild() && owner.getName() ==a.getName()&& houseLevel>=1) {
-			a.setCash(1 / 2 * buildprice);
+			a.setCash((int)(Math.ceil((double)((0.5 * buildprice)))));
 			houseLevel-=1;
+			return true;
 		} else {
 			JOptionPane.showMessageDialog(null,"拆房不合法");
+			return false;
 			// reject
 		}
 	}
@@ -176,12 +180,25 @@ public class Land extends Square{
 			return false;
 		return true;
 	}
-	void mortgage(Player a) {
-		if (checkmortgage()&&status==1) {
-			a.setCash(1 / 2 * buildprice);
+	boolean mortgage(Player a) {
+		if (checkmortgage() && status==1) {
+			a.setCash((int)(Math.ceil((double)((0.5 * buyprice)))));
 			status=0;
+			return true;
 		} else {
 			JOptionPane.showMessageDialog(null,"抵押不合法");
+			return false;
+			// reject
+		}
+	}
+	boolean redeem(Player a) {
+		if (owner==a&&a.getCash()>1 / 2 * buildprice&&status==0) {
+			a.setCash(-(int)(Math.ceil((double)((0.5 * buyprice)))));
+			status=1;
+			return true;
+		} else {
+			JOptionPane.showMessageDialog(null,"赎回不合法");
+			return false;
 			// reject
 		}
 	}

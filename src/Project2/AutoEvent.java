@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class AutoEvent extends JPanel implements ActionListener, Runnable {
-	int conPlay = BigMap.conPlay;
 	JLabel tipBuy = new JLabel();
 	JLabel tipLevel = new JLabel();
 	JLabel tipDo = new JLabel();
