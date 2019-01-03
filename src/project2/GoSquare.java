@@ -1,4 +1,4 @@
-package Project2;
+package project2;
 
 public class GoSquare extends Square {
 	private int value = 0;

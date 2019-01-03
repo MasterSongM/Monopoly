@@ -1,4 +1,4 @@
-package Project2;
+package project2;
 
 public class GoToJail {
 	void goJail(Player a)

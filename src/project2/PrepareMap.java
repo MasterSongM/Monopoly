@@ -1,8 +1,8 @@
-package Project2;
+package project2;
 
 import javax.swing.*;
 
-import Project2.StartMap.ButtonListener;
+import project2.StartMap.ButtonListener;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

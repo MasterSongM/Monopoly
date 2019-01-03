@@ -1,4 +1,4 @@
-package Project2;
+package project2;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 public class PlayerPanel extends JLabel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JPanel playerPanel = new JPanel(new GridLayout(2, 2));
 	JLabel avatar = new JLabel();//头像
 	JLabel name = new JLabel();//名称
@@ -24,7 +28,7 @@ public class PlayerPanel extends JLabel {
 		playerPanel.add(cash);
 		cash.setText("现金:"+a.getCash());
 		playerPanel.add(more);
-		more.setText("地产数:"+0);
+		more.setText("点券:"+a.getGold());
 		name.setFont(font);
 		name.setForeground(Color.RED);
 		playerPanel.setBorder(new TitledBorder("玩家信息"));

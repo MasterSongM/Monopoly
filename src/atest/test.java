@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-public class Atest {
+public class test {
 	public static void main(String[] args) {
 		
 		JFrame f = new JFrame();

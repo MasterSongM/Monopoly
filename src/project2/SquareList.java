@@ -1,4 +1,4 @@
-package Project2;
+package project2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,7 @@ public class SquareList {
 		go1.setValue(20);
 		squares.add(go1);
 		
-		Square f = new Square();
+		RdeventSquare f = new RdeventSquare();
 		f.setId(5);
 		squares.add(f);
 		
@@ -153,7 +153,7 @@ public class SquareList {
 		go3.setValue(20);
 		squares.add(go3);
 		
-		Square p = new Square();
+		RdeventSquare p = new RdeventSquare();
 		p.setId(15);
 		squares.add(p);
 		
@@ -251,7 +251,7 @@ public class SquareList {
 		go5.setValue(20);
 		squares.add(go5);
 		
-		Square z = new Square();
+		RdeventSquare z = new RdeventSquare();
 		z.setId(25);
 		squares.add(z);
 		
@@ -346,10 +346,10 @@ public class SquareList {
 
 		GoSquare go7 = new GoSquare();
 		go7.setId(34);
-		go3.setValue(20);
+		go7.setValue(20);
 		squares.add(go7);
 		
-		Square ii = new Square();
+		RdeventSquare ii = new RdeventSquare();
 		ii.setId(35);
 		squares.add(ii);
 		

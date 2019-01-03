@@ -1,4 +1,4 @@
-package Project2;
+package project2;
 
 import java.util.*;
 
@@ -6,7 +6,11 @@ public class Player {
 	int jailDays = 0;
 	private String name = "";// 记录玩家姓名
 	private int cash = 3456;// 玩家现金 单位：分
-	private int gold = 100;// 玩家点券
+	private int gold = 200;// 玩家点券
+	PassCard pass = new PassCard();
+	LuckyCard lucky = new LuckyCard();
+	ChangeCard change = new ChangeCard();
+	DemolishCard demolish = new DemolishCard();
 	public int getGold() {
 		return gold;
 	}
@@ -50,14 +54,6 @@ public class Player {
 	public void setCash(int c) {
 		cash += c;
 	}
-
-	/*public int getGold() {
-		return gold;
-	}
-
-	public void setGold(int g) {
-		gold += g;
-	}*/
 
 
 	public int getLocation() {

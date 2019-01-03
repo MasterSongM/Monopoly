@@ -1,4 +1,4 @@
-package Project2;
+package project2;
 
 import javax.swing.*;
 import javax.swing.Timer;
@@ -816,8 +816,8 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 		this.pNum = t;
 		// squaresInitial();
 		setLayout(null);
-		players.get(0).setName("玩家1111");
-		players.get(1).setName("玩家2222");
+		players.get(0).setName("大雄111");
+		players.get(1).setName("胖虎222");
 
 		// the game message
 		// Date a1 = new Date();
@@ -1117,6 +1117,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 							// go to jail
 							JOptionPane.showMessageDialog(null, "你连续三次掷出了相同点数，\n我们怀疑你作弊,移送监狱！");
 							new GoToJail().goJail(players.get(playerNum));
+							players.get(playerNum).setLocation(10);
 							switch (playerNum) {
 							case 0:
 								playerIcon1.setBounds(bounds[10][0] + px1, bounds[10][1] + py1, 20, 30);
@@ -1164,6 +1165,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 				players.get(playerNum).setLocation(diceResult);
 				// 前进完毕，处理到达土地后的事件
 				int squareNum = players.get(playerNum).getLocation();
+				Player p = players.get(playerNum);
 				switch (squareNum) {
 				case 1:
 				case 2:
@@ -1191,14 +1193,15 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 				case 39:
 					System.out.println("到达了一块可交易土地");
 					Land currentLocation = (Land) (squares.get(squareNum));
-					System.out.println(players.get(playerNum).getName() + "的当前位置 : " + squareNum);
-					AutoEvent sign = new AutoEvent(currentLocation, players.get(playerNum));
+					System.out.println(p.getName() + "的当前位置 : " + squareNum);
+					AutoEvent sign = new AutoEvent(currentLocation, p);
 					sign.setVisible(true);
 					showOwner(squareNum);
 					break;
 				case 30:
 					JOptionPane.showMessageDialog(null, "资本违法，移送监狱！");
-					new GoToJail().goJail(players.get(playerNum));
+					new GoToJail().goJail(p);
+					p.setLocation(10);
 					switch (playerNum) {
 					case 0:
 						playerIcon1.setBounds(bounds[10][0] + px1, bounds[10][1] + py1, 20, 30);
@@ -1209,7 +1212,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 					}
 					break;
 				case 0://经过起点加钱
-					players.get(playerNum).setCash(200);
+					p.setCash(200);
 					break;
 				case 4:
 				case 6:
@@ -1220,15 +1223,92 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 				case 34:
 				case 36://GoSquare增加点券
 					GoSquare s = (GoSquare)squares.get(squareNum);
-					Player p = players.get(playerNum);
+					
 					s.aotuEvent(p);
 					JOptionPane.showMessageDialog(null, "恭喜你获得了"+s.getValue()+"点券！");
 					break;
+				case 5:
+				case 15:
+				case 25:
+				case 35://随机事件
+					RdeventSquare rd = (RdeventSquare)squares.get(squareNum);
+					String rs = rd.event(players, p);
+					if(rs.equals("去监狱")) {
+						p.setLocation(10);
+						switch (playerNum) {
+						case 0:
+							playerIcon1.setBounds(bounds[10][0] + px1, bounds[10][1] + py1, 20, 30);
+							break;
+						case 1:
+							playerIcon2.setBounds(bounds[10][0] + px2, bounds[10][1] + py2, 20, 30);
+							break;
+						}
+					}
+					break;
 				case 20://点券商店
-					
+					Object[] cards = {"通行卡  100","好运卡  200","交换卡  300","拆除卡  200"}; 
+					int op = JOptionPane.showOptionDialog(null, "你需要购买什么卡片？", "欢迎来到点券商店",JOptionPane.YES_NO_CANCEL_OPTION,
+							JOptionPane.QUESTION_MESSAGE,new ImageIcon("icons/buttons/shop.png"), cards, cards[0]); 
+					switch(op) {
+					case 0:
+						if(p.getGold() < p.pass.getPrice() ) {
+							JOptionPane.showMessageDialog(null, "似乎你的点券不太够哦！");
+						}
+						else if(p.pass.cardBuy()){
+							JOptionPane.showMessageDialog(null, "恭喜你购得了一张通行卡！");
+							p.addGold(-p.pass.getPrice());
+							
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "购买失败，通行卡只能持有一张！");
+						}
+						break;
+					case 1:
+						if(p.getGold() < p.lucky.getPrice() ) {
+							JOptionPane.showMessageDialog(null, "似乎你的点券不太够哦！");
+						}
+						else if(p.lucky.cardBuy()){
+							JOptionPane.showMessageDialog(null, "恭喜你购得了一张好运卡！");
+							p.addGold(-p.lucky.getPrice());
+							
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "购买失败，好运卡只能持有一张！");
+						}
+						break;
+					case 2:
+						if(p.getGold() < p.change.getPrice() ) {
+							JOptionPane.showMessageDialog(null, "似乎你的点券不太够哦！");
+						}
+						else if(p.change.cardBuy()){
+							JOptionPane.showMessageDialog(null, "恭喜你购得了一张交换卡！");
+							p.addGold(-p.change.getPrice());
+							
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "购买失败，交换卡只能持有一张！");
+						}
+						break;
+					case 3:
+						if(p.getGold() < p.demolish.getPrice() ) {
+							JOptionPane.showMessageDialog(null, "似乎你的点券不太够哦！");
+						}
+						else if(p.demolish.cardBuy()){
+							JOptionPane.showMessageDialog(null, "恭喜你购得了一张拆除卡！");
+							p.addGold(-p.demolish.getPrice());
+							
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "购买失败，拆除卡只能持有一张！");
+						}
+						break;
+					default:
+						
+					}
+					break;
 				default:
 					System.out.println("到达了一块非交易型的土地");
-					switch (players.get(playerNum).getLocation()) {
+					switch (p.getLocation()) {
 					case 0:
 						// 经过起点+200
 					case 4:
@@ -1236,7 +1316,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 					default:
 					}
 				}
-				if (diceResult1 != diceResult2 && diceResult1 != diceResult3) {
+				if (diceResult1 != diceResult2 || diceResult1 != diceResult3) {
 					System.out.println("正常结束而不再掷骰子");
 					showFinished();
 				} else {
@@ -1281,9 +1361,9 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 		// TODO Auto-generated method stub
 		// 更新右侧玩家信息
 		pp1.cash.setText("现金:" + players.get(0).getCash());
-		pp1.more.setText("地产数:" + players.get(0).getHouseNum());
+		pp1.more.setText("点券:" + players.get(0).getGold());
 		pp2.cash.setText("现金:" + players.get(1).getCash());
-		pp2.more.setText("地产数:" + players.get(1).getHouseNum());
+		pp2.more.setText("点券:" + players.get(1).getGold());
 	}
 
 	public void showOwner(int location) {

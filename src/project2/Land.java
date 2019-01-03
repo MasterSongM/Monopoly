@@ -1,4 +1,4 @@
-package Project2;
+package project2;
 
 import java.util.Iterator;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Land extends Square{
+	boolean isTradable = false;//设置可交易
 	private int block = 0;// 是否有路障 0无路障1有路障
 	private int street = 0;// 所属街道
 	private int houseLevel = 0;// 房屋等级
@@ -114,7 +115,7 @@ public class Land extends Square{
 	}
 
 	boolean build(Player a) {
-		if (checkbuild() && owner.getName() == a.getName()&& houseLevel<5) {
+		if (checkbuild() && owner.getName() == a.getName() && houseLevel<5) {
 			a.setCash(-buildprice);
 			houseLevel += 1;
 			return true;
@@ -127,8 +128,8 @@ public class Land extends Square{
 
 	boolean checkbuild() {
 		Iterator it = neighbour.iterator();
-		int max = houseLevel;
-		int min = houseLevel;
+		int max = houseLevel+1;
+		int min = houseLevel+1;
 		while (it.hasNext()) {
 			Land tmp = (Land) it.next();
 			if (tmp.houseLevel < min)
@@ -148,7 +149,7 @@ public class Land extends Square{
 	}
 
 	boolean demolish(Player a) {
-		if (checkbuild() && owner.getName() ==a.getName()&& houseLevel>=1) {
+		if (checkdemolish() && owner.getName() ==a.getName()&& houseLevel>=1) {
 			a.setCash((int)(Math.ceil((double)((0.5 * buildprice)))));
 			houseLevel-=1;
 			return true;

@@ -1,4 +1,4 @@
-package Project2;
+package project2;
 
 public class Dice {
 	int result = 6;
