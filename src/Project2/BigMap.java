@@ -15,6 +15,8 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	public int pNum = 2;// 玩家数量
 	Dice diceObject1 = new Dice();
 	Dice diceObject2 = new Dice();
+	Dice diceObject3 = new Dice();
+	
 	boolean isForwarding = false;
 	// The background map
 	int conDice = 0;
@@ -45,6 +47,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	static int diceResult;
 	static int diceResult1;
 	static int diceResult2;
+	static int diceResult3;
 	static int sqr = 72;// Square size
 	int i;// = a.getLocation() + 1; // - diceResult + 1;
 	int i2;// = 20 + b.getLocation();// - diceResult;
@@ -114,12 +117,12 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	private ImageIcon player1 = new ImageIcon("icons/players/player2.png");
 	PlayerPanel pp2 = new PlayerPanel(players.get(1), player1);
 
-	int px3 = 10, py3 = 35;
+	/*int px3 = 10, py3 = 35;
 	private ImageIcon player3 = new ImageIcon("icons/players/player3.png");
 
 	int px4 = 10, py4 = 35;
 	private ImageIcon player4 = new ImageIcon("icons/players/player4.png");
-
+*/
 	// the dices
 	private List<ImageIcon> diceIcons = new ArrayList<ImageIcon>();
 	private ImageIcon dice_0 = new ImageIcon("icons/dice0.png");
@@ -138,6 +141,11 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 		diceIcons.add(dice_5);
 		diceIcons.add(dice_6);
 	}
+	
+	private ImageIcon randomIcon = new ImageIcon("icons/buttons/random.png");//随机事件土地的图标
+	private ImageIcon q20Icon = new ImageIcon("icons/buttons/quan20.png");
+	private ImageIcon q30Icon = new ImageIcon("icons/buttons/quan30.png");
+	private ImageIcon q50Icon = new ImageIcon("icons/buttons/quan50.png");
 
 	// 房子等级图标
 	private ImageIcon mortgaged = new ImageIcon("icons/buttons/mortgaged.png");
@@ -688,6 +696,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	// Create buttons to hold dices
 	JButton dice1 = new JButton(dice_6);
 	JButton dice2 = new JButton(dice_6);
+	JButton dice3 = new JButton(dice_6);
 	//
 	JButton btConfirm = new JButton();
 	//
@@ -708,9 +717,9 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	JLabel btn01 = new JLabel(house0);
 	JLabel btn02 = new JLabel(house0);
 	JLabel btn03 = new JLabel(house0);
-	JLabel btn04 = new JLabel(sqrImg);
-	JLabel btn05 = new JLabel(sqrImg);
-	JLabel btn06 = new JLabel(sqrImg);
+	JLabel btn04 = new JLabel(q20Icon);
+	JLabel btn05 = new JLabel(randomIcon);
+	JLabel btn06 = new JLabel(q30Icon);
 	JLabel btn07 = new JLabel(house0);
 	JLabel btn08 = new JLabel(house0);
 	JLabel btn09 = new JLabel(house0);
@@ -718,9 +727,9 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	JLabel btn11 = new JLabel(house0);
 	JLabel btn12 = new JLabel(house0);
 	JLabel btn13 = new JLabel(house0);
-	JLabel btn14 = new JLabel(sqrImg);
-	JLabel btn15 = new JLabel(sqrImg);
-	JLabel btn16 = new JLabel(sqrImg);
+	JLabel btn14 = new JLabel(q20Icon);
+	JLabel btn15 = new JLabel(randomIcon);
+	JLabel btn16 = new JLabel(q30Icon);
 	JLabel btn17 = new JLabel(house0);
 	JLabel btn18 = new JLabel(house0);
 	JLabel btn19 = new JLabel(house0);
@@ -728,9 +737,9 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	JLabel btn21 = new JLabel(house0);
 	JLabel btn22 = new JLabel(house0);
 	JLabel btn23 = new JLabel(house0);
-	JLabel btn24 = new JLabel(sqrImg);
-	JLabel btn25 = new JLabel(sqrImg);
-	JLabel btn26 = new JLabel(sqrImg);
+	JLabel btn24 = new JLabel(q20Icon);
+	JLabel btn25 = new JLabel(randomIcon);
+	JLabel btn26 = new JLabel(q30Icon);
 	JLabel btn27 = new JLabel(house0);
 	JLabel btn28 = new JLabel(house0);
 	JLabel btn29 = new JLabel(house0);
@@ -738,9 +747,9 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	JLabel btn31 = new JLabel(house0);
 	JLabel btn32 = new JLabel(house0);
 	JLabel btn33 = new JLabel(house0);
-	JLabel btn34 = new JLabel(sqrImg);
-	JLabel btn35 = new JLabel(sqrImg);
-	JLabel btn36 = new JLabel(sqrImg);
+	JLabel btn34 = new JLabel(q20Icon);
+	JLabel btn35 = new JLabel(randomIcon);
+	JLabel btn36 = new JLabel(q50Icon);
 	JLabel btn37 = new JLabel(house0);
 	JLabel btn38 = new JLabel(house0);
 	JLabel btn39 = new JLabel(house0);
@@ -875,11 +884,15 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 		jp.add(dice2);
 		dice2.addActionListener(listener);
 		dice2.setBounds(sqr * 6 + 20, sqr * 9, 66, 66);
+		jp.add(dice3);
+		dice3.addActionListener(listener);
+		dice3.setBounds(sqr * 7 + 20, sqr * 9, 66, 66);
 
 		// add players
 		// set buttons's position
 		playerIcon1.setBounds(bounds[0][0] + px1, bounds[0][1] + py1, 20, 30);
 		playerIcon2.setBounds(bounds[0][0] + px2, bounds[0][1] + py2, 20, 30);
+		
 
 		// add operations
 		jp.add(tradeBtn);
@@ -925,120 +938,149 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 		public void actionPerformed(ActionEvent e) {
 			playTimes++;
 
-			if (e.getSource() == dice1 || e.getSource() == dice2) {
+			if (e.getSource() == dice1 || e.getSource() == dice2 || e.getSource() == dice3) {
 				System.out.println(playerNum + "开始掷骰子！");
 				// time.setText(shijian.getTime(playTimes, a, b));
 				timer.start();
 			} else if (e.getSource() == tradeBtn) {
 				System.out.println(playerNum + "申请交易！");
-				reset();
-				for (int temp = 0; temp < 40; temp++) {
-					switch (temp % 10) {
-					case 1:
-					case 2:
-					case 3:
-					case 7:
-					case 8:
-					case 9:
-						Land t = (Land) squares.get(temp);
-						if (t.getOwner() != null) {
-							if (t.getOwner() != players.get(playerNum) && t.getStatus() == 1) {
-								System.out.println("Show trade: " + temp);
-								jp.add(tradeArray.get(temp));
-								tradeArray.get(temp).setBounds(bbs[temp][0], bbs[temp][1], bbs[temp][2], bbs[temp][3]);
+				if(players.get(playerNum).jailDays == 0) {
+					reset();
+					for (int temp = 0; temp < 40; temp++) {
+						switch (temp % 10) {
+						case 1:
+						case 2:
+						case 3:
+						case 7:
+						case 8:
+						case 9:
+							Land t = (Land) squares.get(temp);
+							if (t.getOwner() != null) {
+								if (t.getOwner() != players.get(playerNum) && t.getStatus() == 1) {
+									System.out.println("Show trade: " + temp);
+									jp.add(tradeArray.get(temp));
+									tradeArray.get(temp).setBounds(bbs[temp][0], bbs[temp][1], bbs[temp][2], bbs[temp][3]);
+								}
 							}
 						}
 					}
+					jp.repaint();
 				}
-				jp.repaint();
+				else {
+					JOptionPane.showMessageDialog(null, "你在监狱里，不能进行此操作！");
+				}
 			} else if (e.getSource() == buildBtn) {
 				System.out.println(playerNum + "申请建房！");
-				reset();
-				for (int temp = 0; temp < 40; temp++) {
-					switch (temp % 10) {
-					case 1:
-					case 2:
-					case 3:
-					case 7:
-					case 8:
-					case 9:
-						Land t = (Land) squares.get(temp);
-						if (t.getOwner() != null) {
-							if (t.getOwner() == players.get(playerNum) && t.getStatus() == 1) {
-								JButton tempButton = buildArray.get(temp);
-								jp.add(tempButton);
-								tempButton.setBounds(bbs[temp][0], bbs[temp][1], bbs[temp][2], bbs[temp][3]);
+				if(players.get(playerNum).jailDays == 0) {
+					reset();
+					for (int temp = 0; temp < 40; temp++) {
+						switch (temp % 10) {
+						case 1:
+						case 2:
+						case 3:
+						case 7:
+						case 8:
+						case 9:
+							Land t = (Land) squares.get(temp);
+							if (t.getOwner() != null) {
+								if (t.getOwner() == players.get(playerNum) && t.getStatus() == 1) {
+									JButton tempButton = buildArray.get(temp);
+									jp.add(tempButton);
+									tempButton.setBounds(bbs[temp][0], bbs[temp][1], bbs[temp][2], bbs[temp][3]);
+								}
 							}
 						}
 					}
+					jp.repaint();
 				}
-				jp.repaint();
+				else {
+					JOptionPane.showMessageDialog(null, "你在监狱里，不能进行此操作！");
+				}
+				
 			} else if (e.getSource() == sellBtn) {
 				System.out.println(playerNum + "申请卖房！");
-				reset();
-				for (int temp = 0; temp < 40; temp++) {
-					switch (temp % 10) {
-					case 1:
-					case 2:
-					case 3:
-					case 7:
-					case 8:
-					case 9:
-						Land t = (Land) squares.get(temp);
-						if (t.getOwner() != null) {
-							if (t.getOwner() == players.get(playerNum) && t.getStatus() == 1) {
-								JButton tempButton = sellArray.get(temp);
-								jp.add(tempButton);
-								tempButton.setBounds(bbs[temp][0], bbs[temp][1], bbs[temp][2], bbs[temp][3]);
+				if(players.get(playerNum).jailDays == 0) {
+					reset();
+					for (int temp = 0; temp < 40; temp++) {
+						switch (temp % 10) {
+						case 1:
+						case 2:
+						case 3:
+						case 7:
+						case 8:
+						case 9:
+							Land t = (Land) squares.get(temp);
+							if (t.getOwner() != null) {
+								if (t.getOwner() == players.get(playerNum) && t.getStatus() == 1) {
+									JButton tempButton = sellArray.get(temp);
+									jp.add(tempButton);
+									tempButton.setBounds(bbs[temp][0], bbs[temp][1], bbs[temp][2], bbs[temp][3]);
+								}
 							}
 						}
 					}
+					jp.repaint();			
 				}
-				jp.repaint();
+				else {
+					JOptionPane.showMessageDialog(null, "你在监狱里，不能进行此操作！");
+				}
+				
 			} else if (e.getSource() == mortBtn) {
 				System.out.println(playerNum + "申请抵押！");
-				reset();
-				for (int temp = 0; temp < 40; temp++) {
-					switch (temp % 10) {
-					case 1:
-					case 2:
-					case 3:
-					case 7:
-					case 8:
-					case 9:
-						Land t = (Land) squares.get(temp);
-						if (t.getOwner() != null) {
-							if (t.getOwner() == players.get(playerNum) && t.getStatus() == 1) {
-								JButton tempButton = mortArray.get(temp);
-								jp.add(tempButton);
-								tempButton.setBounds(bbs[temp][0], bbs[temp][1], bbs[temp][2], bbs[i][3]);
+				if(players.get(playerNum).jailDays == 0) {
+					reset();
+					for (int temp = 0; temp < 40; temp++) {
+						switch (temp % 10) {
+						case 1:
+						case 2:
+						case 3:
+						case 7:
+						case 8:
+						case 9:
+							Land t = (Land) squares.get(temp);
+							if (t.getOwner() != null) {
+								if (t.getOwner() == players.get(playerNum) && t.getStatus() == 1) {
+									JButton tempButton = mortArray.get(temp);
+									jp.add(tempButton);
+									tempButton.setBounds(bbs[temp][0], bbs[temp][1], bbs[temp][2], bbs[i][3]);
+								}
 							}
 						}
 					}
+					jp.repaint();			
 				}
-				jp.repaint();
+				else {
+					JOptionPane.showMessageDialog(null, "你在监狱里，不能进行此操作！");
+				}
+				
 			} else if (e.getSource() == redeemBtn) {
 				System.out.println(playerNum + "申请赎回！");
-				reset();
-				for (int temp = 0; temp < 40; temp++) {
-					switch (temp % 10) {
-					case 1:
-					case 2:
-					case 3:
-					case 7:
-					case 8:
-					case 9:
-						Land t = (Land) squares.get(temp);
-						if (t.getOwner() != null) {
-							if (t.getOwner() == players.get(playerNum) && t.getStatus() == 0) {
-								JButton tempButton = redeemArray.get(temp);
-								jp.add(tempButton);
-								tempButton.setBounds(bbs[temp][0], bbs[temp][1], bbs[temp][2], bbs[temp][3]);
+				if(players.get(playerNum).jailDays == 0) {
+					reset();
+					for (int temp = 0; temp < 40; temp++) {
+						switch (temp % 10) {
+						case 1:
+						case 2:
+						case 3:
+						case 7:
+						case 8:
+						case 9:
+							Land t = (Land) squares.get(temp);
+							if (t.getOwner() != null) {
+								if (t.getOwner() == players.get(playerNum) && t.getStatus() == 0) {
+									JButton tempButton = redeemArray.get(temp);
+									jp.add(tempButton);
+									tempButton.setBounds(bbs[temp][0], bbs[temp][1], bbs[temp][2], bbs[temp][3]);
+								}
 							}
 						}
 					}
+					jp.repaint();		
 				}
-				jp.repaint();
+				else {
+					JOptionPane.showMessageDialog(null, "你在监狱里，不能进行此操作！");
+				}
+				
 			}
 		}
 	}
@@ -1047,22 +1089,14 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	class TimerListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (isForwarding == false) {// 没有正在前进的动画
-				// 是否在监狱
-				if (players.get(playerNum).jailDays > 0) {
-					int option = JOptionPane.showConfirmDialog(null, "是否支付200出狱？");
-					if (option == 0) {
-						players.get(playerNum).setCash(-200);
-						players.get(playerNum).setJailDays(0);
-					} else {// 跳过掷骰子步骤
-						System.out.println("因为在监狱里而跳过掷骰子~");
-						showFinished();
-					}
-				}
 				int random = (int) (Math.random() * 6 + 1);
 				dice1.setIcon(diceIcons.get(random));
 
 				random = (int) (Math.random() * 6 + 1);
 				dice2.setIcon(diceIcons.get(random));
+				
+				random = (int) (Math.random() * 6 + 1);
+				dice3.setIcon(diceIcons.get(random));
 
 				conDice++;
 				if (conDice > 30) {
@@ -1070,12 +1104,14 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 					timer.stop();
 					diceResult1 = diceObject1.dice();
 					diceResult2 = diceObject2.dice();
-					diceResult = diceResult1 + diceResult2;
+					diceResult3 = diceObject3.dice();
+					diceResult = diceResult1 + diceResult2 + diceResult3;
 					// 展现骰子
 					dice1.setIcon(diceIcons.get(diceResult1));
 					dice2.setIcon(diceIcons.get(diceResult2));
+					dice3.setIcon(diceIcons.get(diceResult3));
 					// 三次相同点进监狱
-					if (diceResult1 == diceResult2) {
+					if (diceResult1 == diceResult2 && diceResult1==diceResult3) {
 						diceTimes++;
 						if (diceTimes >= 3) {
 							// go to jail
@@ -1098,12 +1134,14 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 						System.out.println("diceResult: " + diceResult);
 						System.out.println("i test :" + i);
 						conDice = 0;
-						if (players.get(playerNum).getJailDays() == 0 || diceResult1 == diceResult2) {
+						if (players.get(playerNum).getJailDays() == 0 ||( (diceResult1 == diceResult2)&&(diceResult1 == diceResult3))) {
+							players.get(playerNum).setJailDays(0);
 							timer2.start();
+							System.out.println("开始前进！");
 						} else {
 							players.get(playerNum).setJailDays(players.get(playerNum).getJailDays() - 1);
+							showFinished();
 						}
-						System.out.println("开始前进！");
 					}
 				}
 			} else {
@@ -1169,6 +1207,25 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 						playerIcon2.setBounds(bounds[10][0] + px2, bounds[10][1] + py2, 20, 30);
 						break;
 					}
+					break;
+				case 0://经过起点加钱
+					players.get(playerNum).setCash(200);
+					break;
+				case 4:
+				case 6:
+				case 14:
+				case 16:
+				case 24:
+				case 26:
+				case 34:
+				case 36://GoSquare增加点券
+					GoSquare s = (GoSquare)squares.get(squareNum);
+					Player p = players.get(playerNum);
+					s.aotuEvent(p);
+					JOptionPane.showMessageDialog(null, "恭喜你获得了"+s.getValue()+"点券！");
+					break;
+				case 20://点券商店
+					
 				default:
 					System.out.println("到达了一块非交易型的土地");
 					switch (players.get(playerNum).getLocation()) {
@@ -1179,7 +1236,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 					default:
 					}
 				}
-				if (diceResult1 != diceResult2) {
+				if (diceResult1 != diceResult2 && diceResult1 != diceResult3) {
 					System.out.println("正常结束而不再掷骰子");
 					showFinished();
 				} else {
@@ -1216,6 +1273,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 		jp.add(finished);
 		jp.remove(dice1);
 		jp.remove(dice2);
+		jp.remove(dice3);
 		jp.repaint();
 	}
 
@@ -1258,10 +1316,27 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 				System.out.println("现在是" + playerNum + "操作时间！");
 				playing.setText(players.get(playerNum).getName());
 				jp.remove(finished);
+				reset();
+				jp.repaint();
+				
+				// 是否在监狱
+				int jailDays = players.get(playerNum).jailDays;
+				if (jailDays > 0) {
+					int option = JOptionPane.showConfirmDialog(null, players.get(playerNum).getName()
+							+",\n你是否要支付200出狱？");
+					if (option == 0) {
+						players.get(playerNum).setCash(-200);
+						players.get(playerNum).setJailDays(0);
+					} else {// 继续掷骰子
+						
+					}
+				}
 				dice1.setIcon(dice_6);
 				dice2.setIcon(dice_6);
+				dice3.setIcon(dice_6);
 				jp.add(dice1);
 				jp.add(dice2);
+				jp.add(dice3);
 				reset();
 				jp.repaint();
 			}
@@ -1395,26 +1470,24 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 			System.out.println("Try to build house on Square " + tempIndex + " !");
 			Land tempLand = (Land) (squares.get(tempIndex));
 			boolean boo = tempLand.build(players.get(playerNum));
-			if (!boo) {
-				if (boo) {
-					switch (tempLand.getHouseLevel()) {
-					case 1:
-						squareView.get(tempIndex).setIcon(house1);
-						break;
-					case 2:
-						squareView.get(tempIndex).setIcon(house2);
-						break;
-					case 3:
-						squareView.get(tempIndex).setIcon(house3);
-						break;
-					case 4:
-						squareView.get(tempIndex).setIcon(house4);
-						break;
-					case 5:
-						squareView.get(tempIndex).setIcon(house5);
-						break;
-					default:
-					}
+			if (boo) {
+				switch (tempLand.getHouseLevel()) {
+				case 1:
+					squareView.get(tempIndex).setIcon(house1);
+					break;
+				case 2:
+					squareView.get(tempIndex).setIcon(house2);
+					break;
+				case 3:
+					squareView.get(tempIndex).setIcon(house3);
+					break;
+				case 4:
+					squareView.get(tempIndex).setIcon(house4);
+					break;
+				case 5:
+					squareView.get(tempIndex).setIcon(house5);
+					break;
+				default:
 				}
 			}
 			refreshPlayerInfo();

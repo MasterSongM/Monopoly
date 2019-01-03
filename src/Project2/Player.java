@@ -6,7 +6,17 @@ public class Player {
 	int jailDays = 0;
 	private String name = "";// 记录玩家姓名
 	private int cash = 3456;// 玩家现金 单位：分
-	//private int gold = 100;// 玩家点券
+	private int gold = 100;// 玩家点券
+	public int getGold() {
+		return gold;
+	}
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+	public void addGold(int gold) {
+		this.gold += gold;
+	}
+
 	private int houseNum = 0;// 玩家房产数量 单位：分
 	private int location = 0;// 地点代表map1中的位置 从0到39，然后回到0
 

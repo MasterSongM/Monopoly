@@ -7,7 +7,7 @@ public class Square {
 		this.id=id;
 	}
 	
-	public void test() {
+	public void aotuEvent(Player p) {
 		
 	}
 }

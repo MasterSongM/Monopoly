@@ -49,15 +49,20 @@ public class SquareList {
 		neigh2.add(c);
 		d.setNeighbour(neigh2);
 		squares.add(d);
-		Square e = new Square();
-		e.setId(4);
-		squares.add(e);
+		
+		GoSquare go1 = new GoSquare();
+		go1.setId(4);
+		go1.setValue(20);
+		squares.add(go1);
+		
 		Square f = new Square();
 		f.setId(5);
 		squares.add(f);
-		Square g = new Square();
-		g.setId(6);
-		squares.add(g);
+		
+		GoSquare go2 = new GoSquare();
+		go2.setId(6);
+		go2.setValue(30);
+		squares.add(go2);
 
 		Land h = new Land();
 		h.setId(7);
@@ -141,15 +146,21 @@ public class SquareList {
 		squares.add(l);
 		squares.add(m);
 		squares.add(n);
-		Square o = new Square();
-		o.setId(14);
-		squares.add(o);
+		
+
+		GoSquare go3 = new GoSquare();
+		go3.setId(14);
+		go3.setValue(20);
+		squares.add(go3);
+		
 		Square p = new Square();
 		p.setId(15);
 		squares.add(p);
-		Square q = new Square();
-		q.setId(16);
-		squares.add(q);
+		
+		GoSquare go4 = new GoSquare();
+		go4.setId(16);
+		go4.setValue(30);
+		squares.add(go4);
 
 		Land r = new Land();
 		r.setId(17);
@@ -235,15 +246,19 @@ public class SquareList {
 		squares.add(w);
 		squares.add(x);
 
-		Square y = new Square();
-		y.setId(24);
-		squares.add(y);
+		GoSquare go5 = new GoSquare();
+		go5.setId(24);
+		go5.setValue(20);
+		squares.add(go5);
+		
 		Square z = new Square();
 		z.setId(25);
 		squares.add(z);
-		Square zz = new Square();
-		y.setId(26);
-		squares.add(zz);
+		
+		GoSquare go6 = new GoSquare();
+		go6.setId(26);
+		go6.setValue(30);
+		squares.add(go6);
 
 		Land aa = new Land();
 		aa.setId(27);
@@ -329,15 +344,19 @@ public class SquareList {
 		squares.add(ff);
 		squares.add(gg);
 
-		Square hh = new Square();
-		hh.setId(34);
-		squares.add(hh);
+		GoSquare go7 = new GoSquare();
+		go7.setId(34);
+		go3.setValue(20);
+		squares.add(go7);
+		
 		Square ii = new Square();
 		ii.setId(35);
 		squares.add(ii);
-		Square jj = new Square();
-		jj.setId(36);
-		squares.add(jj);
+		
+		GoSquare go8= new GoSquare();
+		go8.setId(36);
+		go8.setValue(50);
+		squares.add(go8);
 
 		Land kk = new Land();
 		kk.setId(27);

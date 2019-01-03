@@ -5,16 +5,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
 public class Atest {
 	public static void main(String[] args) {
-		int option = JOptionPane.showConfirmDialog(null, "买地伐？");
-		if(option == 1) {
-			
-				JOptionPane.showMessageDialog(null, "对不起，现金不足！");
-			
-			
-		}
+		
+		JFrame f = new JFrame();
+		f.setLayout(new GridLayout(2,2));
+		Object[] fruits = {"鑻规灉 20鐐瑰埜","姊ㄥ瓙 20鐐瑰埜","棣欒晧 20鐐瑰埜","瑗跨摐 20鐐瑰埜"}; 
+		int op = JOptionPane.showOptionDialog(f, "浣犻渶瑕佽喘涔颁粈涔堝崱鐗囷紵", "娆㈣繋鏉ュ埌鍗＄墖鍟嗗簵",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,new ImageIcon("icons/buttons/shop.png"), fruits, fruits[0]); 
+		System.out.print((String)fruits[op]);
+		
 	}
 }
