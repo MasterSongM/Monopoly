@@ -18,6 +18,15 @@ public class RdeventSquare extends Square {
 			event2(players);
 			return "扣钱";
 		case 3:
+			int j=1+(int)(Math.random()*3);
+			if(j == 1) {
+				event1(players);
+				return "发工资";
+			}
+			else if(j == 2) {
+				event2(players);
+				return "扣钱";
+			}
 			event3(a);
 			return "去监狱";
 		default:
@@ -50,6 +59,8 @@ public class RdeventSquare extends Square {
 	//gotojail
 	public void event3(Player a)
 	{
+		a.setJailDays(3);
+		a.setLocation(10);
 		JOptionPane.showMessageDialog(null,"啊哦，你因为超速被送进监狱啦~");
 	}
 }

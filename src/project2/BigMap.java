@@ -106,6 +106,15 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 	private ImageIcon bigMap = new ImageIcon("icons/start/background.png");
 	// All kinds of buttons
 	private ImageIcon sqrImg = new ImageIcon("icons/buttons/square.png");
+	
+	//使用卡片图
+	private ImageIcon cardIcon = new ImageIcon("icons/buttons/useCard.png");
+	private JButton card = new JButton(cardIcon);
+	private CardListener cardListen = new CardListener();
+	{
+		card.setBounds(400, 280, 166, 99);
+		card.addActionListener(cardListen);
+	}
 
 	// Players
 	int px1 = 10, py1 = 5;// 格子内的偏移
@@ -929,6 +938,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 		finished.addActionListener(finishTimer);
 		jp.remove(finished);
 
+		jp.add(card);//使用卡片的监听button
 		// test
 
 	}
@@ -1212,7 +1222,7 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 					}
 					break;
 				case 0://经过起点加钱
-					p.setCash(200);
+					//p.setCash(200);
 					break;
 				case 4:
 				case 6:
@@ -1257,7 +1267,6 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 						else if(p.pass.cardBuy()){
 							JOptionPane.showMessageDialog(null, "恭喜你购得了一张通行卡！");
 							p.addGold(-p.pass.getPrice());
-							
 						}
 						else {
 							JOptionPane.showMessageDialog(null, "购买失败，通行卡只能持有一张！");
@@ -1336,7 +1345,11 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 				default:
 					JOptionPane.showMessageDialog(null, "啊哦，出现了某些问题！");
 				}
-				i = (i + 1) % 40;
+				i = i + 1;
+				if(i == 40) {//经过起点加200块钱
+					i = 0;
+					players.get(playerNum).setCash(200);
+				}
 				step++;
 				System.out.println("Forward step " + step + " of " + diceResult + " steps");
 			}
@@ -1402,13 +1415,28 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 				// 是否在监狱
 				int jailDays = players.get(playerNum).jailDays;
 				if (jailDays > 0) {
-					int option = JOptionPane.showConfirmDialog(null, players.get(playerNum).getName()
-							+",\n你是否要支付200出狱？");
+					Player thePlayer = players.get(playerNum);
+					Object[] ops = {"支付200出狱","使用通行卡","都不"}; 
+					int option = JOptionPane.showOptionDialog(null, "你要选择什么操作？", thePlayer.getName()+"处于被关押状态",
+							JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,new ImageIcon("icons/buttons/jail.png"), ops, ops[0]); 
+					
 					if (option == 0) {
-						players.get(playerNum).setCash(-200);
-						players.get(playerNum).setJailDays(0);
-					} else {// 继续掷骰子
-						
+						thePlayer.setCash(-200);
+						thePlayer.setJailDays(0);
+					} else if(option == 1){// 验证通行卡
+						if(thePlayer.pass.usable) {
+							thePlayer.pass.cardUse(thePlayer);
+						}
+						else {
+							option = JOptionPane.showConfirmDialog(null, players.get(playerNum).getName()
+									+",\n是否要支付200出狱？","你还没有通行卡！",JOptionPane.YES_NO_OPTION);
+							if (option == 0) {
+								players.get(playerNum).setCash(-200);
+								players.get(playerNum).setJailDays(0);
+							} else {// 继续掷骰子
+								
+							}
+						}
 					}
 				}
 				dice1.setIcon(dice_6);
@@ -1638,6 +1666,65 @@ public class BigMap extends JPanel {// implements java.io.Serializable {
 				jp.repaint();
 			}
 			refreshPlayerInfo();
+		}
+	}
+	
+	//卡片使用的监听
+	class CardListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Clicked CardListenerS!");
+			Player p = players.get(playerNum);
+			ArrayList<String> list=new ArrayList<String>();
+			if(p.pass.isUsable())	list.add(p.pass.getName());
+			if(p.lucky.isUsable())	list.add(p.lucky.getName());
+			if(p.change.isUsable())	list.add(p.change.getName());
+			if(p.demolish.isUsable())	list.add(p.demolish.getName());
+			String cards[] = new String[list.size()];
+			list.toArray(cards);
+			if(cards.length > 0) {
+				int op = JOptionPane.showOptionDialog(null, "你想使用什么卡片？", "拥有的卡片",JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.QUESTION_MESSAGE,new ImageIcon("icons/buttons/shop.png"), cards, cards[0]);
+				if(op != -1) {
+					String c = cards[op];
+					switch(c) {
+					case "通行卡":
+						p.pass.cardUse(p);
+						break;
+					case "好运卡":
+						String index = JOptionPane.showInputDialog(null, "输入想去的土地序号：");
+						int b = Integer.valueOf(index).intValue();
+						Square s = squares.get(b);
+						if(p.lucky.cardUse(p, s)) {
+							switch(playerNum) {
+							case 0:
+								playerIcon1.setBounds(bounds[b][0] + px1, bounds[b][1] + py1, 20, 30);
+								break;
+							case 1:
+								playerIcon2.setBounds(bounds[b][0] + px2, bounds[b][1] + py2, 20, 30);
+								break;
+							}
+						}
+						break;
+					case "交换卡":
+						String change = JOptionPane.showInputDialog(null, "输入用于交换的土地序号：");
+						int byIndex = Integer.valueOf(change).intValue();
+						Land by = (Land)squares.get(byIndex);
+						Land it = (Land)squares.get(p.getLocation());
+						if(p.change.cardUse(p, by, it)) {
+							JOptionPane.showMessageDialog(null, "交换成功！");
+						}
+						break;
+					case "拆除卡":
+						Land land = (Land)squares.get(p.getLocation());
+						p.demolish.cardUse(p, land);
+						break;
+					}
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "你还没有购买任何卡片！");
+			}
+			repaint();
 		}
 	}
 
